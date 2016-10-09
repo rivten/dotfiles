@@ -20,8 +20,9 @@ Plugin 'morhetz/gruvbox'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-sensible'
 Plugin 'junegunn/vim-easy-align'
-Plugin 'terryma/vim-smooth-scroll'
 Plugin 'vim-scripts/grep.vim'
+Plugin 'jansedivy/jai.vim'
+Plugin 'a-watson/vim-gdscript'
 
 call vundle#end()
 " enable filetype plugins
@@ -38,7 +39,7 @@ set encoding=utf-8
 " about tabs
 set tabstop=4
 set softtabstop=4
-set expandtab
+" set expandtab
 set shiftwidth=4
 set smarttab
 set autoindent
@@ -55,6 +56,9 @@ set langmenu=en_US.UTF-8
 :set guioptions-=T  "remove toolbar
 :set guioptions-=r  "remove right-hand scroll bar
 :set guioptions-=L  "remove left-hand scroll bar
+
+"extra C++ shit
+syn keyword cppType local_persist internal_var internal_function global_var constant_var r32 r64 ubyte uint ulong i8 u8 i32 u32 i64 u64 i16 u16 b32
 
 "fullscreen at startup
 au GUIEnter * simalt ~n 
@@ -85,6 +89,10 @@ noremap! <Left> <Esc>
 noremap  <Right> <NOP>
 noremap! <Right> <Esc>
 
+" quick close QuickFix window (for build)
+nnoremap <Leader>k :cclose<cr>
+
+
 " dealing with azerty shit
 nmap z w
 nmap <C-T> <C-]>
@@ -99,6 +107,9 @@ lmap ’ `
 
 " no more esc shit
 inoremap jk <ESC>
+
+" make last typed word uppercase
+inoremap <c-c> <ESC>viwUea
 
 " changing leader key to space
 let mapleader=","
@@ -158,10 +169,11 @@ augroup END
 "         BUILD BATCH                       "
 """""""""""""""""""""""""""""""""""""""""""""
 function! s:build()
-    let &makeprg='build'
-    silent Make
+    let &makeprg='build.bat'
+    silent make
     botright copen
-    wincmd p
+    wincmd t
+    wincmd H
 endfunction
 
 command! Build call s:build()
@@ -176,6 +188,9 @@ let g:pymode_rope = 0
 " no autofolding
 let g:pymode_folding = 0
 
+" no colorcolumn
+let g:pymode_options_colorcolumn = 0
+
 " ignoring the proper error
 let g:pymode_lint_ignore = "E302,E303,C901,E501,E231,E251"
 
@@ -188,8 +203,14 @@ set runtimepath^=~/vimfiles/bundle/ctrlp.vim
 " http://dougblack.io/words/a-good-vimrc.html
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+"let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|sln|pdf|opensdf|pdb|obj|sdf|png|svg|vcxproj|filters|user|ilk|lib|exp|pyc)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+"let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'
 
 """""""""""""""""""""""""""""""""""""""""""""""
 "        vim-airline                          "
@@ -205,31 +226,23 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space = "\ua0"
 
-""""""""""""""""""""""""""""""""""""""""""""""
-"            NERDTree                        "
-""""""""""""""""""""""""""""""""""""""""""""""
-let NERDTreeIgnore=['\.pyc$', '\~$', '\.class$']
-
-
-""""""""""""""""""""""""""""""""""""""""""""""
-"            Vim-Airline                     "
-""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_right_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_left_alt_sep= ''
 let g:airline_left_sep = ''
 
 """"""""""""""""""""""""""""""""""""""""""""""
+"            NERDTree                        "
+""""""""""""""""""""""""""""""""""""""""""""""
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.class$', '\.obj$', '\.exe$', '\.sln$', '.\vcxproj$', '\.filters$', '\.user$']
+nmap <leader>ne : NERDTree<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""
 "            Vim-Align                       "
 """"""""""""""""""""""""""""""""""""""""""""""
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
-""""""""""""""""""""""""""""""""""""""""""""""
-"            Vim-Smooth-Scroll               "
-""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <C-U> :call smooth_scroll#up(&scroll, 55, 3)<CR>
-nnoremap <silent> <C-D> :call smooth_scroll#down(&scroll, 55, 3)<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""
 "          Opening commands                  "
@@ -247,3 +260,5 @@ let Fgrep_Path = 'c:/GnuWin32/bin/fgrep.exe'
 let Egrep_Path = 'c:/GnuWin32/bin/egrep.exe'
 let Grep_Find_Path = 'c:/GnuWin32/bin/find.exe'
 let Grep_Xargs_Path = 'c:/GnuWin32/bin/xargs.exe'
+let Grep_Default_Options = '-rI'
+nmap <leader>g :Grep<cr>
