@@ -23,6 +23,8 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'vim-scripts/grep.vim'
 Plugin 'jansedivy/jai.vim'
 Plugin 'a-watson/vim-gdscript'
+Plugin 'bkad/CamelCaseMotion'
+Plugin 'vim-scripts/argtextobj.vim'
 
 call vundle#end()
 " enable filetype plugins
@@ -30,8 +32,15 @@ filetype plugin on
 filetype indent on
 " color highlight syntax
 syntax enable
-set background=dark
-colorscheme gruvbox
+
+let UsingBasic = 0
+if(UsingBasic == 0)
+	set background=dark
+	colorscheme gruvbox
+else
+	set background=light
+	colorscheme basic
+endif
 
 " basic stuff
 set encoding=utf-8
@@ -160,11 +169,24 @@ set noswapfile
 
 set switchbuf=useopen,split
 
-augroup custom_highlight
-    autocmd!
-    autocmd VimEnter,WinEnter * match GruvboxGreenBold /NOTE/ | 2match ErrorMsg /TODO/
-augroup END
-"
+if(UsingBasic == 0)
+	augroup custom_highlight
+		autocmd!
+		autocmd VimEnter,WinEnter * match GruvboxGreenBold /NOTE/ | 2match ErrorMsg /TODO/
+	augroup END
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""
+"          CamelCaseMotion                   "
+""""""""""""""""""""""""""""""""""""""""""""""
+
+call camelcasemotion#CreateMotionMappings('<leader>')
+map <silent> <leader>e <Plug>CamelCaseMotion_e
+map <silent> <leader>v <Plug>CamelCaseMotion_b
+map <silent> <leader>w <Plug>CamelCaseMotion_w
+map <silent> <leader>z <Plug>CamelCaseMotion_w
+
+
 """""""""""""""""""""""""""""""""""""""""""""
 "         BUILD BATCH                       "
 """""""""""""""""""""""""""""""""""""""""""""
@@ -248,8 +270,10 @@ nmap ga <Plug>(EasyAlign)
 "          Opening commands                  "
 "     this always needs to be at the end     "
 """"""""""""""""""""""""""""""""""""""""""""""
-" highlighting certain keywords
-windo match GruvboxGreenBold /NOTE/ | 2match ErrorMsg /TODO/
+if(UsingBasic == 0)
+	" highlighting certain keywords
+	windo match GruvboxGreenBold /NOTE/ | 2match ErrorMsg /TODO/
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""
 "          GREP VIM                          "
@@ -262,3 +286,4 @@ let Grep_Find_Path = 'c:/GnuWin32/bin/find.exe'
 let Grep_Xargs_Path = 'c:/GnuWin32/bin/xargs.exe'
 let Grep_Default_Options = '-rI'
 nmap <leader>g :Grep<cr>
+
