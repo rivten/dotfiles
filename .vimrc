@@ -1,15 +1,16 @@
 " Vim plugins setup
 filetype off
 set nocompatible
-set rtp+=~\vimfiles\bundle\Vundle.vim
-call vundle#begin('~\vimfiles\bundle')
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin('~/.vim/bundle')
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'klen/python-mode'
-Plugin 'crtlpvim/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'elzr/vim-json'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'godlygeek/tabular'
@@ -58,7 +59,7 @@ set cursorline
 
 " changing language to english because why not
 set langmenu=en_US.UTF-8  
-:language mes EN
+":language mes EN
 
 " removing useless shit
 :set guioptions-=m  "remove menu bar
@@ -70,7 +71,8 @@ set langmenu=en_US.UTF-8
 syn keyword cppType local_persist internal_var internal_function global_var constant_var r32 r64 ubyte uint ulong i8 u8 i32 u32 i64 u64 i16 u16 b32
 
 "fullscreen at startup
-au GUIEnter * simalt ~n 
+"au GUIEnter * simalt ~n 
+set lines=999 columns=999
 
 " displaying line numbers
 set relativenumber
@@ -124,7 +126,7 @@ inoremap <c-c> <ESC>viwUea
 let mapleader=","
 
 " setting a badass font
-set guifont=Iosevka:h14
+"set guifont=Iosevka:h14
 
 " trying to do autocomplete on file search
 set wildmode=longest,list,full
@@ -191,7 +193,7 @@ map <silent> <leader>z <Plug>CamelCaseMotion_w
 "         BUILD BATCH                       "
 """""""""""""""""""""""""""""""""""""""""""""
 function! s:build()
-    let &makeprg='build.bat'
+    let &makeprg='./build.sh'
     silent make
     botright copen
     wincmd t
@@ -219,7 +221,7 @@ let g:pymode_lint_ignore = "E302,E303,C901,E501,E231,E251"
 """"""""""""""""""""""""""""""""""""""""""""""
 "        CtrlP                               "
 """"""""""""""""""""""""""""""""""""""""""""""
-set runtimepath^=~/vimfiles/bundle/ctrlp.vim
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " next CtrlP commands founds at
 " http://dougblack.io/words/a-good-vimrc.html
@@ -286,4 +288,3 @@ let Grep_Find_Path = 'c:/GnuWin32/bin/find.exe'
 let Grep_Xargs_Path = 'c:/GnuWin32/bin/xargs.exe'
 let Grep_Default_Options = '-rI'
 nmap <leader>g :Grep<cr>
-
