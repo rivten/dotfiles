@@ -198,8 +198,10 @@ let g:asyncrun_open = 3
 function! s:build()
 	if(has("win32"))
 		compiler msvc
+		:AsyncRun build.bat
+	else
+		:AsyncRun ./build.sh
 	endif
-	:AsyncRun ./build.sh
 endfunction
 
 command! Build call s:build()
