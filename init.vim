@@ -20,7 +20,7 @@ filetype off
 set nocompatible
 if has("win32")
 	set rtp+=C:\Users\hviala\vimfiles\bundle\Vundle.vim
-	call vundle#begin("C:\Users\hviala\vimfiles\bundle");
+	call vundle#begin('C:\Users\hviala\vimfiles\bundle')
 else
 	set rtp+=~/.vim/bundle/Vundle.vim
 	call vundle#begin('~/.vim/bundle')
@@ -127,7 +127,14 @@ let mapleader=","
 
 " setting a badass font
 "set guifont=Iosevka\ Term\ Regular\ 14
-set guifont=LiberationMono\ 12
+if has("win32")
+	if has("gui_running")
+		GuiFont! Liberation Mono:h13
+		GuiTabline 0
+	endif
+else
+	set guifont=LiberationMono\ 12
+endif
 
 " trying to do autocomplete on file search
 set wildmode=longest,list,full
