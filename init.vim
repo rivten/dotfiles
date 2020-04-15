@@ -27,9 +27,16 @@
 " vim is very bad)
 "
 " QGREP ON LINUX
-"  TODO write this
+" This qgrep files should be placed in 
+"   ~/.vim/pack/plugins/start
+" You should create a qgrep folder in there and put everything that is inside
+" the qgrep vim/ directory.
 
-set runtimepath^=~/vimfiles runtimepath+=~/vimfiles/after
+if has("win32")
+	set runtimepath^=~/vimfiles runtimepath+=~/vimfiles/after
+else
+	set runtimepath^=~/.vim runtimepath+=~/.vim/after
+endif
 let &packpath = &runtimepath
 filetype off
 set nocompatible
