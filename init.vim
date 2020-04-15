@@ -232,7 +232,7 @@ nmap <leader>ne : NERDTree<cr>
 " Specific ubi stuff
 if(has("win32"))
 	" Perforce
-	nmap <leader>p :P4edit
+	nmap <leader>p :P4edit<CR>
 
 
 	" Build scripts
