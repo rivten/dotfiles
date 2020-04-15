@@ -232,8 +232,8 @@ map <Leader>b :Build<cr>
 """"""""""""""""""""""""""""""""""""""""""""""
 "            NERDTree                        "
 """"""""""""""""""""""""""""""""""""""""""""""
-let NERDTreeIgnore=['\.pyc$', '\~$', '\.class$', '\.obj$', '\.exe$', '\.sln$', '.\vcxproj$', '\.filters$', '\.user$']
-nmap <leader>ne : NERDTree<cr>
+"let NERDTreeIgnore=['\.pyc$', '\~$', '\.class$', '\.obj$', '\.exe$', '\.sln$', '.\vcxproj$', '\.filters$', '\.user$']
+"nmap <leader>ne : NERDTree<cr>
 
 
 " Specific ubi stuff
@@ -290,3 +290,5 @@ set wildignore+=**/build/**
 set wildignore+=**/bin/**
 set wildignore+=**/zig-cache/**
 set wildignore+=**/data/**
+
+nnoremap <leader>n :ls<CR>:b<SPACE>
