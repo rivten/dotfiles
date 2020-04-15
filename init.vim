@@ -2,7 +2,7 @@
 "
 " This is my vimrc file.
 " There are two plugins that might need direct install :
-" - qgrep
+" - zeux/qgrep
 " - tek256/simple-dark I think vundle also needs to be installed manually
 "
 " Also, this might only work in neovim. Not sure at all about pure vanilla vim
@@ -15,7 +15,22 @@
 " ON LINUX :
 " All plugins should be located in ~/.vim
 " THIS file should be located in ~/.config/nvim/init.vim
+"
+" QGREP ON WINDOWS
+" The qgrep files should be placed in 
+"   C:\Users\hviala\vimfiles\pack\plugins\start
+" You should create a qgrep folder in there and put everything that is inside
+" the qgrep vim/ directory.
+" Also, you should compile the DLL and put in inside this folder. 
+" WARNING ! Make sure the DLL is 64/32-bit == the same as your neovim
+" configuration. (i.e. a 64-bit compiled qgrep dll with a 32 bit version of
+" vim is very bad)
+"
+" QGREP ON LINUX
+"  TODO write this
 
+set runtimepath^=~/vimfiles runtimepath+=~/vimfiles/after
+let &packpath = &runtimepath
 filetype off
 set nocompatible
 if has("win32")
