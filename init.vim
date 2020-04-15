@@ -126,7 +126,7 @@ endfunc
 nnoremap <silent><C-a> :call NumberToggle()<cr>
 
 " quick close QuickFix window (for build)
-nnoremap <Leader>k :ccl<cr>
+nnoremap <leader>k :ccl<cr>
 
 
 " dealing with azerty shit
