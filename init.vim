@@ -16,6 +16,12 @@
 " All plugins should be located in ~/.vim
 " THIS file should be located in ~/.config/nvim/init.vim
 "
+" VIM AND NOT NEOVIM
+" ON WINDOWS :
+" THIS file should be located in C:\Users\my_users\_vimrc (_vimrc is the name)
+" ON LINUX :
+" THIS file should be located in ~/.vimrc
+"
 " QGREP ON WINDOWS
 " The qgrep files should be placed in 
 "   C:\Users\hviala\vimfiles\pack\plugins\start
@@ -126,7 +132,7 @@ endfunc
 nnoremap <silent><C-a> :call NumberToggle()<cr>
 
 " quick close QuickFix window (for build)
-nnoremap <leader>k :ccl<cr>
+nnoremap <C-x> :cclose<cr>
 
 
 " dealing with azerty shit
@@ -148,14 +154,11 @@ inoremap jk <ESC>
 let mapleader=","
 
 " setting a badass font
-"set guifont=Iosevka\ Term\ Regular\ 14
-if has("win32")
-	if has("gui_running")
-		GuiFont! Liberation Mono:h13
-		GuiTabline 0
-	endif
+if has("nvim")
+	" Font init is in ginit.vim
 else
-	set guifont=LiberationMono\ 12
+	"set guifont=Iosevka\ Term\ Regular\ 14
+	"set guifont=LiberationMono\ 13
 endif
 
 " trying to do autocomplete on file search
@@ -222,19 +225,13 @@ function! s:build()
 		compiler msvc
 		:AsyncRun build.bat
 	else
-		:AsyncRun ./build.sh
+		compiler gcc
+		:AsyncRun bash build.sh
 	endif
 endfunction
 
 command! Build call s:build()
-map <Leader>b :Build<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""
-"            NERDTree                        "
-""""""""""""""""""""""""""""""""""""""""""""""
-"let NERDTreeIgnore=['\.pyc$', '\~$', '\.class$', '\.obj$', '\.exe$', '\.sln$', '.\vcxproj$', '\.filters$', '\.user$']
-"nmap <leader>ne : NERDTree<cr>
-
+map <leader>b :Build<cr>
 
 " Specific ubi stuff
 if(has("win32"))
@@ -243,11 +240,15 @@ if(has("win32"))
 
 
 	" Build scripts
+	function! s:BuildScimitarTool_()
+		compiler msbuild
+		:AsyncRun c:/scripts/build_scimitar_tool.bat
+	endfunction
+
 	command! BuildScimitarTool call s:BuildScimitarTool_()
 	nmap <leader>bt :BuildScimitarTool<cr>
 
 	function! s:BuildScimitarEngine_()
-		":Dispatch c:/scripts/build_scimitar_engine.bat
 		compiler msbuild
 		:AsyncRun c:/scripts/build_scimitar_engine.bat
 	endfunction
@@ -256,7 +257,6 @@ if(has("win32"))
 	nmap <leader>be :BuildScimitarEngine<cr> 
 
 	function! s:GenerateProjects_()
-		":Dispatch c:/scripts/generate_projects.bat
 		:AsyncRun c:/scripts/generate_projects.bat
 	endfunction
 
@@ -292,3 +292,6 @@ set wildignore+=**/zig-cache/**
 set wildignore+=**/data/**
 
 nnoremap <leader>n :ls<CR>:b<SPACE>
+
+set magic
+set hidden
