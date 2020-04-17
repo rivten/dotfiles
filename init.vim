@@ -284,7 +284,11 @@ if has("win32")
 	set shellslash
 endif
 
-set path+=**
+"set path+=**
+"I do this because otherwise, on linux at least, the whole /usr/include folder
+"is put inside the path. So the recursive ** makes _every_ :e look into this
+"huge folder. I don't think this is a big deal removing this folder from path.
+set path=.,**
 
 set wildignore+=**/build/**
 set wildignore+=**/bin/**
