@@ -236,7 +236,7 @@ map <leader>b :Build<cr>
 " Specific ubi stuff
 if(has("win32"))
 	" Perforce
-	nmap <leader>p :P4edit<CR>
+	nmap <leader>p :set noshellslash<CR> :P4edit<CR> :set shellslash<CR>
 
 
 	" Build scripts
@@ -290,6 +290,10 @@ set wildignore+=**/build/**
 set wildignore+=**/bin/**
 set wildignore+=**/zig-cache/**
 set wildignore+=**/data/**
+set wildignore+=**/tmp/**
+set wildignore+=**/temp/**
+set wildignore+=**/doc/**
+set wildignore+=**/projects/**
 
 nnoremap <leader>n :ls<CR>:b<SPACE>
 
