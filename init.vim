@@ -303,3 +303,6 @@ nnoremap <leader>n :ls<CR>:b<SPACE>
 
 set magic
 set hidden
+
+" remap esc to exit terminal command in vim
+tnoremap <Esc> <C-\><C-n>
