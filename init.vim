@@ -99,6 +99,7 @@ set cursorline
 
 " changing language to english because why not
 set langmenu=en_US.UTF-8  
+language messages en
 ":language mes EN
 
 " removing useless shit
@@ -117,19 +118,8 @@ endif
 
 " displaying line numbers
 set relativenumber
-"set number
-
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber
-    set number
-  else
-    set relativenumber
-    set nonumber
-  endif
-endfunc
-
-nnoremap <silent><C-a> :call NumberToggle()<cr>
+set nonumber
+nnoremap <silent><C-a> :set relativenumber!<cr>:set number!<cr>
 
 " quick close QuickFix window (for build)
 nnoremap <C-x> :cclose<cr>
@@ -196,7 +186,10 @@ vnoremap <F9> zf
 " no more beeps
 set noerrorbells visualbell t_vb=
 if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
+	augroup personal_group
+		autocmd!
+		autocmd GUIEnter * set visualbell t_vb=
+	augroup END
 endif
 
 " no backup
