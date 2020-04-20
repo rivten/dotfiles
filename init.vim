@@ -304,5 +304,8 @@ set hidden
 " remap esc to exit terminal command in vim
 tnoremap <Esc> <C-\><C-n>
 
-command! QgrepSearchCursor normal! viw"ay:QgrepSearch<cr><c-r>a
-command! QgrepGetDefinition normal! viw"ay:QgrepSearch<cr>(class|struct|enum|typedef|define)(\s|\w)*\b<c-r>a\b($|[^;])
+" NOTE(hugo): for now this does not work on out-of-the-box qgrep
+" I submitted a pull request but if someone needs the change, it's here :
+" https://github.com/rivten/qgrep/commit/166a7069804503eb6c6c8e71066c2e43960a161a
+command! QgrepSearchCursor execute ":QgrepSearch" expand("<cword>")
+command! QgrepGetDefinition execute ":QgrepSearch" '(class|struct|enum|typedef|define)(\s|\w)*\b' . expand("<cword>") . '\b($|[^;])'
