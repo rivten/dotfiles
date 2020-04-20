@@ -99,7 +99,11 @@ set cursorline
 
 " changing language to english because why not
 set langmenu=en_US.UTF-8  
-language messages en
+if has("win32")
+	language messages en
+else
+	language messages en_GB.utf-8
+endif
 ":language mes EN
 
 " removing useless shit
