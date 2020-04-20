@@ -299,3 +299,6 @@ set hidden
 
 " remap esc to exit terminal command in vim
 tnoremap <Esc> <C-\><C-n>
+
+command! QgrepSearchCursor normal! viw"ay:QgrepSearch<cr><c-r>a
+command! QgrepGetDefinition normal! viw"ay:QgrepSearch<cr>(class|struct|enum|typedef|define)(\s|\w)*\b<c-r>a\b($|[^;])
