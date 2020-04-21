@@ -93,6 +93,7 @@ set softtabstop=4
 set shiftwidth=4
 set smarttab
 set autoindent
+set lazyredraw
 
 " show current line
 set cursorline
