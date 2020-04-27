@@ -68,6 +68,7 @@ Plugin 'vim-scripts/argtextobj.vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'ziglang/zig.vim'
+Plugin 'mileszs/ack.vim'
 if has("win32")
 	Plugin 'nfvs/vim-perforce'
 endif
@@ -131,14 +132,14 @@ nnoremap <C-x> :cclose<cr>
 
 
 " dealing with azerty shit
-nmap z w
-nmap <C-T> <C-]>
+nnoremap <C-T> <C-]>
+nnoremap <C-]> <C-T>
 
-set langmap=à@,è`,é~,ç_,’`,ù%
+set langmap=à@,è`,é~,ç^,’`,ù%
 lmap à @
 lmap è `
 lmap é ~
-lmap ç _
+lmap ç ^
 lmap ù %
 lmap ’ `
 
@@ -176,6 +177,8 @@ set showmatch
 " space now puts us at the center of the screen
 nnoremap <Space> zz
 
+" Backspace instead of CTRL-6 or CTRL-^ (not very close on azerty keyboard)
+nnoremap <bs> <C-^>
 
 " enable folding
 set foldenable
@@ -302,6 +305,9 @@ nnoremap <leader>n :ls<CR>:b<SPACE>
 set magic
 set hidden
 
+" vertical split is on the right by default (instead of left)
+set splitright
+
 " remap esc to exit terminal command in vim
 tnoremap <Esc> <C-\><C-n>
 
@@ -310,3 +316,8 @@ noremap Y y$
 
 command! QgrepSearchCursor execute ":QgrepSearch" expand("<cword>")
 command! QgrepGetDefinition execute ":QgrepSearch" '(class|struct|enum|typedef|define)(\s|\w)*\b' . expand("<cword>") . '\b($|[^;])'
+
+" Ack / Ag
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep --smart-case'
+endif
