@@ -134,6 +134,7 @@ nnoremap <C-x> :cclose<cr>
 " dealing with azerty shit
 nnoremap <C-T> <C-]>
 nnoremap <C-]> <C-T>
+nnoremap g<C-T> g<C-]>
 
 set langmap=à@,è`,é~,ç^,’`,ù%
 lmap à @
@@ -167,6 +168,9 @@ set autoread
 " search is now moar beautiful
 set hlsearch
 set incsearch
+
+" show the result of the modification in real time before applying it
+set inccommand=nosplit
 
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
