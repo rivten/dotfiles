@@ -55,10 +55,6 @@ else
 endif
 Plugin 'gmarik/Vundle.vim'
 
-"Plugin 'bling/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'morhetz/gruvbox'
@@ -73,6 +69,8 @@ if has("win32")
 	Plugin 'nfvs/vim-perforce'
 endif
 Plugin 'tek256/simple-dark'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()
 " enable filetype plugins
@@ -304,16 +302,11 @@ set wildignore+=**/temp/**
 set wildignore+=**/doc/**
 set wildignore+=**/projects/**
 
-nnoremap <leader>n :ls<CR>:b<SPACE>
-
 set magic
 set hidden
 
 " vertical split is on the right by default (instead of left)
 set splitright
-
-" remap esc to exit terminal command in vim
-tnoremap <Esc> <C-\><C-n>
 
 " even vim recommends this for consistency
 noremap Y y$
@@ -324,4 +317,41 @@ command! QgrepGetDefinition execute ":QgrepSearch" '(class|struct|enum|typedef|d
 " Ack / Ag
 if executable('ag')
     let g:ackprg = 'ag --vimgrep --smart-case'
+endif
+
+" fzf
+" What I do here is special. I don't want fzf in hugely big projects like I do
+" at work. For those, I use qgrep which caches the results in order to get
+" them very easily. For this first version, I will just list the folder that
+" uses qgrep. If I launch vim in those folder, I won't override <C-P> and let
+" qgrep have that mapping. Otherwise, I will override it with fzf.
+" TODO(hugo): parse the .qgrep folder for the cfg files of each mapped
+" project. Check if the path of those projects is the current working
+" directory. This avoids having a hardcoded list of folder.
+let use_fzf = 0
+if executable("fzf")
+    if has("win32")
+        let qgrep_projects = []
+    else
+        let qgrep_projects = ['/home/hugo/dev/handmadehero/cpp/code']
+    endif
+
+    if index(qgrep_projects, getcwd()) == -1
+        let use_fzf = 1
+    endif
+endif
+
+if use_fzf
+    " using fzf configuration
+    let g:qgrep_map = 0 "tell qgrep not to map commands
+    nnoremap <C-P> :Files<CR>
+    nnoremap <leader>n :Buffers<CR>
+    if executable("ag")
+        nnoremap <C-S> :Ag<CR>
+    endif
+else
+    " no fzf configuration
+    " remap esc to exit terminal command in vim
+    tnoremap <Esc> <C-\><C-n>
+    nnoremap <leader>n :ls<CR>:b<SPACE>
 endif
