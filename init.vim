@@ -331,7 +331,7 @@ endif
 let use_fzf = 0
 if executable("fzf")
     if has("win32")
-        let qgrep_projects = []
+        let qgrep_projects = ['d:/JD_CODE_STREAM/hugo_jd_work', 'd:/Perforce/tgt/work']
     else
         let qgrep_projects = ['/home/hugo/dev/handmadehero/cpp/code']
     endif
