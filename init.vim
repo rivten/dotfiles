@@ -71,6 +71,8 @@ endif
 Plugin 'tek256/simple-dark'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'calviken/vim-gdscript3'
+Plugin 'srcery-colors/srcery-vim'
 
 call vundle#end()
 " enable filetype plugins
@@ -79,8 +81,12 @@ filetype indent on
 " color highlight syntax
 syntax enable
 
+set title
+
 set background=dark
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme srcery
+let g:srcery_underline=0
 
 " basic stuff
 set encoding=utf-8
@@ -222,10 +228,10 @@ map <silent> <leader>z <Plug>CamelCaseMotion_w
 """""""""""""""""""""""""""""""""""""""""""""
 "         BUILD BATCH                       "
 """""""""""""""""""""""""""""""""""""""""""""
-let g:asyncrun_open = 3
 function! s:build()
 	if(has("win32"))
 		compiler msvc
+		"compiler msbuild
 		:AsyncRun build.bat
 	else
 		compiler gcc
@@ -239,32 +245,7 @@ map <leader>b :Build<cr>
 " Specific ubi stuff
 if(has("win32"))
 	" Perforce
-	nmap <leader>p :set noshellslash<CR> :P4edit<CR> :set shellslash<CR>
-
-
-	" Build scripts
-	function! s:BuildScimitarTool_()
-		compiler msbuild
-		:AsyncRun c:/scripts/build_scimitar_tool.bat
-	endfunction
-
-	command! BuildScimitarTool call s:BuildScimitarTool_()
-	nmap <leader>bt :BuildScimitarTool<cr>
-
-	function! s:BuildScimitarEngine_()
-		compiler msbuild
-		:AsyncRun c:/scripts/build_scimitar_engine.bat
-	endfunction
-
-	command! BuildScimitarEngine call s:BuildScimitarEngine_()
-	nmap <leader>be :BuildScimitarEngine<cr> 
-
-	function! s:GenerateProjects_()
-		:AsyncRun c:/scripts/generate_projects.bat
-	endfunction
-
-	command! GenerateProjects call s:GenerateProjects_()
-	nmap <leader>gp :GenerateProjects<cr>
+	nmap <leader>p :P4edit<CR>
 
 	set errorformat-=completed%s
 endif
@@ -282,10 +263,6 @@ else
   nmap ,cl :let @*=expand("%:p")<CR>
 endif
 
-
-if has("win32")
-	set shellslash
-endif
 
 "set path+=**
 "I do this because otherwise, on linux at least, the whole /usr/include folder
@@ -328,15 +305,21 @@ endif
 " TODO(hugo): parse the .qgrep folder for the cfg files of each mapped
 " project. Check if the path of those projects is the current working
 " directory. This avoids having a hardcoded list of folder.
+let is_qgrep_project = 0
+if has("win32")
+    let qgrep_projects = ['d:\JD_CODE_STREAM\hugo_jd_work']
+else
+    let qgrep_projects = ['/home/hugo/dev/handmadehero/cpp/code']
+endif
+if index(qgrep_projects, getcwd()) != -1
+    "in theory, we should check if qgrep executable is here
+    " but executable("qgrep") does not seem to work...
+    let is_qgrep_project = 1
+endif
+
 let use_fzf = 0
 if executable("fzf")
-    if has("win32")
-        let qgrep_projects = ['d:/JD_CODE_STREAM/hugo_jd_work', 'd:/Perforce/tgt/work']
-    else
-        let qgrep_projects = ['/home/hugo/dev/handmadehero/cpp/code']
-    endif
-
-    if index(qgrep_projects, getcwd()) == -1
+    if is_qgrep_project == 0
         let use_fzf = 1
     endif
 endif
@@ -344,7 +327,11 @@ endif
 if use_fzf
     " using fzf configuration
     let g:qgrep_map = 0 "tell qgrep not to map commands
-    nnoremap <C-P> :Files<CR>
+    if has("win32")
+        nnoremap <C-P> :FZF<CR>
+    else
+        nnoremap <C-P> :Files<CR>
+    endif
     nnoremap <leader>n :Buffers<CR>
     if executable("ag")
         nnoremap <C-S> :Ag<CR>
@@ -352,6 +339,13 @@ if use_fzf
 else
     " no fzf configuration
     " remap esc to exit terminal command in vim
-    tnoremap <Esc> <C-\><C-n>
-    nnoremap <leader>n :ls<CR>:b<SPACE>
+    if has("win32")
+    else
+        tnoremap <Esc> <C-\><C-n>
+    endif
+    if is_qgrep_project
+        nnoremap <leader>n :QgrepBuffers<CR>
+    else
+        nnoremap <leader>n :ls<CR>:b<SPACE>
+    endif
 endif
