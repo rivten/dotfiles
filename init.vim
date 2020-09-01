@@ -205,6 +205,10 @@ if has('autocmd')
 	augroup personal_group
 		autocmd!
 		autocmd GUIEnter * set visualbell t_vb=
+
+        " Godot - for gdscript, do not set tab as spaces
+        autocmd FileType gdscript3 setlocal noexpandtab
+
 	augroup END
 endif
 
