@@ -1,9 +1,10 @@
 " BY HUGO VIALA.
 "
 " This is my vimrc file.
-" There are two plugins that might need direct install :
+" There are three plugins that might need direct install :
+" - vundlevim/vundle
 " - zeux/qgrep
-" - tek256/simple-dark I think vundle also needs to be installed manually
+" - tek256/simple-dark
 "
 " Also, this might only work in neovim. Not sure at all about pure vanilla vim
 " Now, the whole windows/linux stuff starts to appear.
@@ -112,7 +113,7 @@ else
 endif
 ":language mes EN
 
-" removing useless shit
+" removing useless stuff
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
@@ -135,7 +136,7 @@ nnoremap <silent><C-a> :set relativenumber!<cr>:set number!<cr>
 nnoremap <C-x> :cclose<cr>
 
 
-" dealing with azerty shit
+" dealing with azerty stuff
 nnoremap <C-T> <C-]>
 nnoremap <C-]> <C-T>
 nnoremap g<C-T> g<C-]>
@@ -148,7 +149,7 @@ lmap ç ^
 lmap ù %
 lmap ’ `
 
-" no more esc shit
+" no more esc
 inoremap jk <ESC>
 
 " changing leader key to space
@@ -232,19 +233,15 @@ map <silent> <leader>z <Plug>CamelCaseMotion_w
 """""""""""""""""""""""""""""""""""""""""""""
 "         BUILD BATCH                       "
 """""""""""""""""""""""""""""""""""""""""""""
-function! s:build()
-	if(has("win32"))
-		compiler msvc
-		"compiler msbuild
-		:AsyncRun build.bat
-	else
-		compiler gcc
-		:AsyncRun bash build.sh
-	endif
-endfunction
-
-command! Build call s:build()
-map <leader>b :Build<cr>
+let g:asyncrun_open = 8
+if(has("win32"))
+    compiler msvc
+    "compiler msbuild
+    map <leader>b :AsyncRun build.bat<cr>
+else
+    compiler gcc
+    map <leader>b :AsyncRun bash build.sh<cr>
+endif
 
 " Specific ubi stuff
 if(has("win32"))
@@ -273,15 +270,6 @@ endif
 "is put inside the path. So the recursive ** makes _every_ :e look into this
 "huge folder. I don't think this is a big deal removing this folder from path.
 set path=.,**
-
-set wildignore+=**/build/**
-set wildignore+=**/bin/**
-set wildignore+=**/zig-cache/**
-set wildignore+=**/data/**
-set wildignore+=**/tmp/**
-set wildignore+=**/temp/**
-set wildignore+=**/doc/**
-set wildignore+=**/projects/**
 
 set magic
 set hidden
