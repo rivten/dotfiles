@@ -59,13 +59,11 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'morhetz/gruvbox'
-Plugin 'vim-scripts/grep.vim'
 Plugin 'bkad/CamelCaseMotion'
 Plugin 'vim-scripts/argtextobj.vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'ziglang/zig.vim'
-Plugin 'mileszs/ack.vim'
 if has("win32")
 	Plugin 'nfvs/vim-perforce'
 endif
@@ -74,6 +72,9 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'calviken/vim-gdscript3'
 Plugin 'srcery-colors/srcery-vim'
+Plugin 'elixir-editors/vim-elixir'
+Plugin 'pangloss/vim-javascript'
+Plugin 'MaxMEllon/vim-jsx-pretty'
 
 call vundle#end()
 " enable filetype plugins
@@ -152,7 +153,7 @@ lmap ’ `
 " no more esc
 inoremap jk <ESC>
 
-" changing leader key to space
+" changing leader key to comma
 let mapleader=","
 
 " setting a badass font
@@ -164,7 +165,7 @@ else
 endif
 
 " trying to do autocomplete on file search
-set wildmode=longest,list,full
+set wildmode=longest,list:full,full
 set wildmenu
 
 " automatically reload modified files
@@ -283,11 +284,6 @@ noremap Y y$
 command! QgrepSearchCursor execute ":QgrepSearch" expand("<cword>")
 command! QgrepGetDefinition execute ":QgrepSearch" '(class|struct|enum|typedef|define)(\s|\w)*\b' . expand("<cword>") . '\b($|[^;])'
 
-" Ack / Ag
-if executable('ag')
-    let g:ackprg = 'ag --vimgrep --smart-case'
-endif
-
 " fzf
 " What I do here is special. I don't want fzf in hugely big projects like I do
 " at work. For those, I use qgrep which caches the results in order to get
@@ -341,3 +337,33 @@ else
         nnoremap <leader>n :ls<CR>:b<SPACE>
     endif
 endif
+
+let $PYTHONUNBUFFERED=1
+
+function! SwitchCPPHeader()
+    " TODO(hugo): improve for C files.
+    let l:current_buf_name = bufname()
+    let l:next_buf_name = ""
+    if l:current_buf_name[-4:-1] == '.cpp'
+        let l:next_buf_name = l:current_buf_name[0:-5] . '.h'
+    elseif l:current_buf_name[-2:-1] == '.h'
+        let l:next_buf_name = l:current_buf_name[0:-3] . '.cpp'
+    else
+        echomsg "This is not a cpp/h file!"
+        return
+    endif
+    if bufwinnr(l:next_buf_name) == -1
+        execute("edit " . l:next_buf_name)
+    else
+        execute("buffer " . l:next_buf_name)
+    endif
+endfunction
+nnoremap <silent><C-Z> :call SwitchCPPHeader()<CR>
+
+
+command! -nargs=1 Work execute(":AsyncRun python work.py --" . <q-args>)
+nnoremap <leader>x :Work<SPACE>
+
+" NOTE(hugo): this overwrites fzf commands...
+command! -nargs=+ -complete=file Ag execute(":AsyncRun ag --vimgrep --smart-case " . <q-args>)
+command! -nargs=+ -complete=file Afiles execute(":AsyncRun ag --vimgrep --smart-case --filename-pattern " . <q-args>)
