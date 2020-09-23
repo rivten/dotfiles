@@ -75,6 +75,7 @@ Plugin 'srcery-colors/srcery-vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'pangloss/vim-javascript'
 Plugin 'MaxMEllon/vim-jsx-pretty'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 " enable filetype plugins
