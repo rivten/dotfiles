@@ -134,10 +134,6 @@ set relativenumber
 set nonumber
 nnoremap <silent><C-a> :set relativenumber!<cr>:set number!<cr>
 
-" quick close QuickFix window (for build)
-nnoremap <C-x> :cclose<cr>
-
-
 " dealing with azerty stuff
 nnoremap <C-T> <C-]>
 nnoremap <C-]> <C-T>
@@ -294,6 +290,7 @@ command! QgrepGetDefinition execute ":QgrepSearch" '(class|struct|enum|typedef|d
 " TODO(hugo): parse the .qgrep folder for the cfg files of each mapped
 " project. Check if the path of those projects is the current working
 " directory. This avoids having a hardcoded list of folder.
+" TODO(hugo): actually put what is project-local to project.vim file
 let is_qgrep_project = 0
 if has("win32")
     let qgrep_projects = ['d:\JD_CODE_STREAM\hugo_jd_work']
@@ -362,9 +359,8 @@ endfunction
 nnoremap <silent><C-Z> :call SwitchCPPHeader()<CR>
 
 
-command! -nargs=1 Work execute(":AsyncRun python work.py --" . <q-args>)
-nnoremap <leader>x :Work<SPACE>
+if filereadable('project.vim')
+    " command internal to current project
+    source project.vim
+endif
 
-" NOTE(hugo): this overwrites fzf commands...
-command! -nargs=+ -complete=file Ag execute(":AsyncRun ag --vimgrep --smart-case " . <q-args>)
-command! -nargs=+ -complete=file Afiles execute(":AsyncRun ag --vimgrep --smart-case --filename-pattern " . <q-args>)
