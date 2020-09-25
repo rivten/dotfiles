@@ -198,6 +198,13 @@ nnoremap <F9> za
 onoremap <F9> <C-C>za
 vnoremap <F9> zf
 
+function! LoadProjectSpecificVimScript()
+    if filereadable('project.vim')
+        " command internal to current project
+        source project.vim
+    endif
+endfunction
+
 " no more beeps
 set noerrorbells visualbell t_vb=
 if has('autocmd')
@@ -207,6 +214,14 @@ if has('autocmd')
 
         " Godot - for gdscript, do not set tab as spaces
         autocmd FileType gdscript3 setlocal noexpandtab
+
+        autocmd!
+        " NOTE(hugo): this works because VimEnter is called _AFTER_ loading
+        " this file, so we will rightly override default setup.
+        " TODO(hugo): how do we reset the setup when there is no project.vim
+        " file ? Maybe setup a project_default.vim ? Because at least we
+        " should remove the commands from the project.vim previously loaded...
+        autocmd DirChanged,VimEnter * call LoadProjectSpecificVimScript()
 
 	augroup END
 endif
@@ -357,10 +372,3 @@ function! SwitchCPPHeader()
     endif
 endfunction
 nnoremap <silent><C-Z> :call SwitchCPPHeader()<CR>
-
-
-if filereadable('project.vim')
-    " command internal to current project
-    source project.vim
-endif
-
