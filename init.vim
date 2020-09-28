@@ -152,6 +152,9 @@ inoremap jk <ESC>
 
 " changing leader key to comma
 let mapleader=","
+" because having my leader to comma, it is not possible to do f,
+" so I remap it to f§ which is close on french keyboard
+nnoremap § ,
 
 " setting a badass font
 if has("nvim")
@@ -278,7 +281,6 @@ else
 endif
 
 
-"set path+=**
 "I do this because otherwise, on linux at least, the whole /usr/include folder
 "is put inside the path. So the recursive ** makes _every_ :e look into this
 "huge folder. I don't think this is a big deal removing this folder from path.
@@ -292,9 +294,6 @@ set splitright
 
 " even vim recommends this for consistency
 noremap Y y$
-
-command! QgrepSearchCursor execute ":QgrepSearch" expand("<cword>")
-command! QgrepGetDefinition execute ":QgrepSearch" '(class|struct|enum|typedef|define)(\s|\w)*\b' . expand("<cword>") . '\b($|[^;])'
 
 " fzf
 " What I do here is special. I don't want fzf in hugely big projects like I do
@@ -372,3 +371,11 @@ function! SwitchCPPHeader()
     endif
 endfunction
 nnoremap <silent><C-Z> :call SwitchCPPHeader()<CR>
+
+if executable("ag")
+    set grepprg=ag\ --vimgrep\ --smart-case
+endif
+
+" TODO(hugo): do I need this ?
+" set wildignorecase
+set fileignorecase
