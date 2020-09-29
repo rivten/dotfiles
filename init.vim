@@ -44,14 +44,13 @@ if has("win32")
 else
 	set runtimepath^=~/.vim runtimepath+=~/.vim/after
 endif
-let &packpath = &runtimepath
 filetype off
 set nocompatible
 if has("win32")
-	set rtp+=C:\Users\hviala\vimfiles\bundle\Vundle.vim
+	set runtimepath+=C:\Users\hviala\vimfiles\bundle\Vundle.vim
 	call vundle#begin('C:\Users\hviala\vimfiles\bundle')
 else
-	set rtp+=~/.vim/bundle/Vundle.vim
+	set runtimepath+=~/.vim/bundle/Vundle.vim
 	call vundle#begin('~/.vim/bundle')
 endif
 Plugin 'gmarik/Vundle.vim'
@@ -195,11 +194,6 @@ set foldenable
 set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
-
-inoremap <F9> <C-O>za
-nnoremap <F9> za
-onoremap <F9> <C-C>za
-vnoremap <F9> zf
 
 function! LoadProjectSpecificVimScript()
     if filereadable('project.vim')
