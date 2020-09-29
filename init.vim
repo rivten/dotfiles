@@ -44,6 +44,7 @@ if has("win32")
 else
 	set runtimepath^=~/.vim runtimepath+=~/.vim/after
 endif
+let &packpath=&runtimepath
 filetype off
 set nocompatible
 if has("win32")
@@ -131,7 +132,7 @@ endif
 " displaying line numbers
 set relativenumber
 set nonumber
-nnoremap <silent><C-a> :set relativenumber!<cr>:set number!<cr>
+nnoremap <silent><F12> :set relativenumber!<cr>:set number!<cr>
 
 " dealing with azerty stuff
 nnoremap <C-T> <C-]>
@@ -244,6 +245,7 @@ map <silent> <leader>z <Plug>CamelCaseMotion_w
 "         BUILD BATCH                       "
 """""""""""""""""""""""""""""""""""""""""""""
 let g:asyncrun_open = 8
+" TODO(hugo): maybe delete this ?
 if(has("win32"))
     compiler msvc
     "compiler msbuild
@@ -251,14 +253,6 @@ if(has("win32"))
 else
     compiler gcc
     map <leader>b :AsyncRun bash build.sh<cr>
-endif
-
-" Specific ubi stuff
-if(has("win32"))
-	" Perforce
-	nmap <leader>p :P4edit<CR>
-
-	set errorformat-=completed%s
 endif
 
 " Convert slashes to backslashes for Windows.
@@ -273,7 +267,6 @@ else
   nmap ,cs :let @*=expand("%")<CR>
   nmap ,cl :let @*=expand("%:p")<CR>
 endif
-
 
 "I do this because otherwise, on linux at least, the whole /usr/include folder
 "is put inside the path. So the recursive ** makes _every_ :e look into this
@@ -313,13 +306,6 @@ endif
 
 let use_fzf = 0
 if executable("fzf")
-    if is_qgrep_project == 0
-        let use_fzf = 1
-    endif
-endif
-
-if use_fzf
-    " using fzf configuration
     let g:qgrep_map = 0 "tell qgrep not to map commands
     if has("win32")
         nnoremap <C-P> :FZF<CR>
@@ -337,11 +323,7 @@ else
     else
         tnoremap <Esc> <C-\><C-n>
     endif
-    if is_qgrep_project
-        nnoremap <leader>n :QgrepBuffers<CR>
-    else
-        nnoremap <leader>n :ls<CR>:b<SPACE>
-    endif
+    nnoremap <leader>n :ls<CR>:b<SPACE>
 endif
 
 let $PYTHONUNBUFFERED=1
@@ -371,5 +353,5 @@ if executable("ag")
 endif
 
 " TODO(hugo): do I need this ?
-" set wildignorecase
+set wildignorecase
 set fileignorecase
