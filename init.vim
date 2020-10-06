@@ -56,7 +56,6 @@ else
 endif
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'plasticboy/vim-markdown'
 Plugin 'tikhomirov/vim-glsl'
 Plugin 'morhetz/gruvbox'
 Plugin 'bkad/CamelCaseMotion'

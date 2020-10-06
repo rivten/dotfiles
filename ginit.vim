@@ -15,6 +15,6 @@ if has("win32")
 	GuiFont! Liberation Mono:h13
 	GuiTabline 0
 else
-	GuiFont! Liberation Mono:h11
+	GuiFont! Liberation Mono:h12
 	GuiTabline 0
 endif
