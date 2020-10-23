@@ -69,12 +69,13 @@ endif
 Plugin 'tek256/simple-dark'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
-Plugin 'calviken/vim-gdscript3'
+Plugin 'habamax/vim-godot'
 Plugin 'srcery-colors/srcery-vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'pangloss/vim-javascript'
 Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'tpope/vim-surround'
+Plugin 'neovimhaskell/haskell-vim'
 
 call vundle#end()
 " enable filetype plugins
@@ -270,7 +271,8 @@ endif
 "I do this because otherwise, on linux at least, the whole /usr/include folder
 "is put inside the path. So the recursive ** makes _every_ :e look into this
 "huge folder. I don't think this is a big deal removing this folder from path.
-set path=.,**
+set path=.,,
+"set path=.,**
 
 set magic
 set hidden
