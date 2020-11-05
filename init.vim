@@ -75,7 +75,8 @@ Plugin 'elixir-editors/vim-elixir'
 Plugin 'pangloss/vim-javascript'
 Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'tpope/vim-surround'
-Plugin 'neovimhaskell/haskell-vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'vhdirk/vim-cmake'
 
 call vundle#end()
 " enable filetype plugins
