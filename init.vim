@@ -355,5 +355,10 @@ if executable("ag")
 endif
 
 " TODO(hugo): do I need this ?
-set wildignorecase
+" set wildignorecase
 set fileignorecase
+
+set termguicolors
+
+" Exiting in the terminal
+tnoremap jk <C-\><C-n>
