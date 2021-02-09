@@ -77,6 +77,7 @@ Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'tpope/vim-surround'
 Plugin 'mattn/emmet-vim'
 Plugin 'vhdirk/vim-cmake'
+Plugin 'dpelle/vim-Grammalecte'
 
 call vundle#end()
 " enable filetype plugins
@@ -362,3 +363,6 @@ set termguicolors
 
 " Exiting in the terminal
 tnoremap jk <C-\><C-n>
+
+let g:grammalecte_cli_py="/home/hugo/programs/Grammalecte-fr-v2.0.0/grammalecte-cli.py"
+let g:grammalecte_disable_rules = 'apostrophe_typographique apostrophe_typographique_après_t espaces_début_ligne espaces_milieu_ligne espaces_fin_de_ligne typo_points_suspension1 typo_tiret_incise nbsp_avant_double_ponctuation nbsp_avant_deux_points nbsp_après_chevrons_ouvrants nbsp_avant_chevrons_fermants1 unit_nbsp_avant_unités1 unit_nbsp_avant_unités2 unit_nbsp_avant_unités3 typo_guillemets_typographiques_doubles_fermants typo_guillemets_typographiques_doubles_ouvrants'
