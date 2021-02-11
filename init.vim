@@ -78,6 +78,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'mattn/emmet-vim'
 Plugin 'vhdirk/vim-cmake'
 Plugin 'dpelle/vim-Grammalecte'
+Plugin 'ludovicchabant/vim-gutentags'
 
 call vundle#end()
 " enable filetype plugins

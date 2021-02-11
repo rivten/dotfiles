@@ -18,3 +18,5 @@ else
 	GuiFont! Liberation Mono:h12
 	GuiTabline 0
 endif
+
+GuiPopupmenu 0
