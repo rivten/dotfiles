@@ -84,6 +84,7 @@ Plugin 'neovimhaskell/haskell-vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'dstein64/vim-startuptime'
 Plugin 'kassio/neoterm'
+Plugin 'vimwiki/vimwiki'
 
 call vundle#end()
 " enable filetype plugins
@@ -403,4 +404,10 @@ if get(g:, 'colors_name', '') == 'srcery'
     hi! link haskellChar SrceryBrightGreen
 
     hi! link haskellKeyword SrceryBrightOrange
+
+    hi! link VimwikiHeader1 SrceryRed
+    hi! link VimwikiHeader2 SrceryBlue
+    hi! link VimwikiHeader3 SrceryBrightGreen
+    hi! link VimwikiLink SrceryCyan
+    hi! link VimwikiList SrceryBrightWhite
 endif
