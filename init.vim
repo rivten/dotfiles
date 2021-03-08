@@ -222,13 +222,16 @@ if has('autocmd')
         " Godot - for gdscript, do not set tab as spaces
         autocmd FileType gdscript3 setlocal noexpandtab
 
-        autocmd!
         " NOTE(hugo): this works because VimEnter is called _AFTER_ loading
         " this file, so we will rightly override default setup.
         " TODO(hugo): how do we reset the setup when there is no project.vim
         " file ? Maybe setup a project_default.vim ? Because at least we
         " should remove the commands from the project.vim previously loaded...
         autocmd DirChanged,VimEnter * call LoadProjectSpecificVimScript()
+
+        autocmd FileType vimwiki nmap <buffer> <CR> <Plug>VimwikiFollowLink
+
+        autocmd BufWritePost *.vim source %
 
 	augroup END
 endif
@@ -406,8 +409,11 @@ if get(g:, 'colors_name', '') == 'srcery'
     hi! link haskellKeyword SrceryBrightOrange
 
     hi! link VimwikiHeader1 SrceryRed
-    hi! link VimwikiHeader2 SrceryBlue
-    hi! link VimwikiHeader3 SrceryBrightGreen
-    hi! link VimwikiLink SrceryCyan
+    hi! link VimwikiHeader2 SrceryBrightOrange
+    hi! link VimwikiHeader3 SrceryBrightBlue
+    hi! link VimwikiLink SrceryBrightGreen
     hi! link VimwikiList SrceryBrightWhite
+    hi! link VimwikiCode SrceryBrightBlue
 endif
+
+let g:vimwiki_key_mappings = { 'links': 0, }
