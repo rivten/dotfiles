@@ -85,6 +85,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'dstein64/vim-startuptime'
 Plugin 'kassio/neoterm'
 Plugin 'vimwiki/vimwiki'
+Plugin 'jsborjesson/vim-uppercase-sql'
 
 call vundle#end()
 " enable filetype plugins
