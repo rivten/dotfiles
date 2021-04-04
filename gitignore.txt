@@ -1,0 +1,2 @@
+# to add to config : git config --global core.excludesFile '~/.gitignore'
+tags
