@@ -167,11 +167,12 @@ let mapleader=","
 nnoremap § ,
 
 " setting a badass font
-if has("nvim")
-	" Font init is in ginit.vim
+if !has("nvim")
+    if has("gui_running")
+        set guifont=LiberationMono\ 12
+    endif
 else
-	"set guifont=Iosevka\ Term\ Regular\ 14
-	"set guifont=LiberationMono\ 13
+	" Font init is in ginit.vim
 endif
 
 " trying to do autocomplete on file search
@@ -185,8 +186,10 @@ set autoread
 set hlsearch
 set incsearch
 
-" show the result of the modification in real time before applying it
-set inccommand=nosplit
+if has('nvim')
+    " show the result of the modification in real time before applying it
+    set inccommand=nosplit
+endif
 
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
