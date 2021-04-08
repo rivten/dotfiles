@@ -345,26 +345,6 @@ endif
 
 let $PYTHONUNBUFFERED=1
 
-function! SwitchCPPHeader()
-    " TODO(hugo): improve for C files.
-    let l:current_buf_name = bufname()
-    let l:next_buf_name = ""
-    if l:current_buf_name[-4:-1] == '.cpp'
-        let l:next_buf_name = l:current_buf_name[0:-5] . '.h'
-    elseif l:current_buf_name[-2:-1] == '.h'
-        let l:next_buf_name = l:current_buf_name[0:-3] . '.cpp'
-    else
-        echomsg "This is not a cpp/h file!"
-        return
-    endif
-    if bufwinnr(l:next_buf_name) == -1
-        execute("edit " . l:next_buf_name)
-    else
-        execute("buffer " . l:next_buf_name)
-    endif
-endfunction
-nnoremap <silent><C-Z> :call SwitchCPPHeader()<CR>
-
 if executable("ag")
     set grepprg=ag\ --vimgrep\ --smart-case
 endif
