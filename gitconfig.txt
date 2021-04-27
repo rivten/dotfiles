@@ -1,0 +1,5 @@
+# To put in ~/.gitconfig
+[core]
+	excludesFile = ~/.gitignore
+[merge]
+    conflictstyle = diff3
