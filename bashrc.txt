@@ -1,0 +1,8 @@
+# To append at the end of ~/.bashrc
+VISUAL=nvim
+EDITOR="$VISUAL"
+
+source /usr/share/fzf/completion.bash
+source /usr/share/fzf/key-bindings.bash
+
+alias t='python ~/dev/t/t.py --task-dir ~/tasks --list tasks.txt'
