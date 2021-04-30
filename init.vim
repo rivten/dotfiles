@@ -86,6 +86,7 @@ Plugin 'dstein64/vim-startuptime'
 Plugin 'kassio/neoterm'
 Plugin 'vimwiki/vimwiki'
 Plugin 'jsborjesson/vim-uppercase-sql'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 " enable filetype plugins
@@ -353,7 +354,7 @@ endif
 " set wildignorecase
 set fileignorecase
 
-set termguicolors
+"set termguicolors
 
 " Exiting in the terminal
 tnoremap jk <C-\><C-n>
