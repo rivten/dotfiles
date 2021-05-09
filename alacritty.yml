@@ -1,0 +1,7 @@
+# to put in ~/.config/alacritty/alacritty.yml
+font:
+    normal:
+        #family: Liberation Mono
+        family: Monospace
+    size: 12.0
+

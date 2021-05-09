@@ -87,6 +87,7 @@ Plugin 'kassio/neoterm'
 Plugin 'vimwiki/vimwiki'
 Plugin 'jsborjesson/vim-uppercase-sql'
 Plugin 'tpope/vim-fugitive'
+Plugin 'preservim/vimux'
 
 call vundle#end()
 " enable filetype plugins
@@ -97,10 +98,12 @@ syntax enable
 
 set title
 
-set background=dark
+"set background=dark
 "colorscheme gruvbox
 colorscheme srcery
 let g:srcery_underline=0
+" to have no background in terminal
+" highlight Normal guibg=None
 
 " basic stuff
 set encoding=utf-8
@@ -354,7 +357,7 @@ endif
 " set wildignorecase
 set fileignorecase
 
-"set termguicolors
+set termguicolors
 
 " Exiting in the terminal
 tnoremap jk <C-\><C-n>
