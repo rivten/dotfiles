@@ -1,5 +1,13 @@
 # To put in ~/.gitconfig
+[user]
+    name = rivten
+    email = rivten@riseup.net
 [core]
-	excludesFile = ~/.gitignore
+    editor = nvim
+    excludesFile = ~/.gitignore
 [merge]
     conflictstyle = diff3
+[push]
+    default = tracking
+[github]
+    user = rivten
