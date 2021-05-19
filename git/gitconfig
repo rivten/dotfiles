@@ -5,6 +5,7 @@
 [core]
     editor = nvim
     excludesFile = ~/.gitignore
+    pager = less --tabs=4 -RFX
 [merge]
     conflictstyle = diff3
 [push]
