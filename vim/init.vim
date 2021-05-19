@@ -88,6 +88,7 @@ Plugin 'vimwiki/vimwiki'
 Plugin 'jsborjesson/vim-uppercase-sql'
 Plugin 'tpope/vim-fugitive'
 Plugin 'preservim/vimux'
+Plugin 'preservim/nerdtree'
 
 call vundle#end()
 " enable filetype plugins
@@ -240,6 +241,10 @@ if has('autocmd')
         autocmd FileType vimwiki nmap <buffer> <CR> <Plug>VimwikiFollowLink
 
         autocmd BufWritePost *.vim source %
+
+        " Start NERDTree when Vim starts with a directory argument.
+        autocmd StdinReadPre * let s:std_in=1
+        autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
 	augroup END
 endif
