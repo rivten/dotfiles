@@ -45,3 +45,6 @@ colors:
     white:   '#fce8c3'
 
 background_opacity: 1.0
+
+shell:
+    program: /usr/bin/tmux
