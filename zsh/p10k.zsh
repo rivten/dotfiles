@@ -38,7 +38,7 @@
   autoload -Uz is-at-least && is-at-least 5.1 || return
 
   # Prompt colors.
-  local grey='242'
+  local grey='#918175'
   local red='#ef2f27'
   local yellow='#fbb829'
   local blue='#68a8e4'
