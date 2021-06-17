@@ -407,6 +407,13 @@ if get(g:, 'colors_name', '') == 'srcery'
     hi! link VimwikiLink SrceryBrightGreen
     hi! link VimwikiList SrceryBrightWhite
     hi! link VimwikiCode SrceryBrightBlue
+
+    hi! link ocamlKeyChar SrceryWhite
+    hi! link ocamlKeyword SrceryBrightOrange
+    hi! link ocamlArrow SrceryWhite
+    hi! link ocamlModPreRHS SrceryWhite
+    hi! link ocamlAnyVar SrceryWhite
+    hi! link ocamlConstructor SrceryBrightMagenta
 endif
 
 let g:vimwiki_key_mappings = { 'links': 0, }
