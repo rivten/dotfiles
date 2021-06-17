@@ -6,7 +6,7 @@ ln -s $cwd/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 ln -s $cwd/ctags/default.ctags ~/.config/ctags/default.ctags
 ln -s $cwd/git/gitconfig ~/.gitconfig
 ln -s $cwd/git/gitignore ~/.gitignore
-ln -s $cwd/tmux/.tmux.conf ~/.tmux.conf
+ln -s $cwd/tmux/tmux.conf ~/.tmux.conf
 ln -s $cwd/vim/init.vim ~/.config/nvim/init.vim
 ln -s $cwd/vim/ginit.vim ~/.config/nvim/ginit.vim
 ln -s $cwd/zsh/zshrc ~/.zshrc
