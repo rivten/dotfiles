@@ -11,3 +11,4 @@ ln -s $cwd/vim/init.vim ~/.config/nvim/init.vim
 ln -s $cwd/vim/ginit.vim ~/.config/nvim/ginit.vim
 ln -s $cwd/zsh/zshrc ~/.zshrc
 ln -s $cwd/zsh/p10k.zsh ~/.p10k.zsh
+ln -s $cwd/cabal/config ~/.cabal/config
