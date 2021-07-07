@@ -270,15 +270,7 @@ map <silent> <leader>z <Plug>CamelCaseMotion_w
 "         BUILD BATCH                       "
 """""""""""""""""""""""""""""""""""""""""""""
 let g:asyncrun_open = 8
-" TODO(hugo): maybe delete this ?
-if(has("win32"))
-    compiler msvc
-    "compiler msbuild
-    map <leader>b :AsyncRun build.bat<cr>
-else
-    compiler gcc
-    map <leader>b :AsyncRun bash build.sh<cr>
-endif
+nnoremap <leader>b :make<enter>
 
 " Convert slashes to backslashes for Windows.
 if has('win32')
