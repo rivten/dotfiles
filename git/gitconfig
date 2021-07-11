@@ -6,9 +6,15 @@
     editor = nvim
     excludesFile = ~/.gitignore
     pager = less --tabs=4 -RFX
+	quotePath = false
+	commitGraph = true
 [merge]
     conflictstyle = diff3
 [push]
     default = tracking
 [github]
     user = rivten
+[receive]
+	advertisePushOptions = true
+[gc]
+	writeCommitGraph = true
