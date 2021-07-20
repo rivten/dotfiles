@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cwd="$(git rev-parse --show-toplevel)"
+
+xfconf-query --channel xfce4-keyboard-shortcuts --property '/commands/custom/<Primary><Alt>t' --create --type string --set "$cwd/term/term"
+
+xfconf-query --channel xfce4-keyboard-shortcuts --property '/commands/custom/<Primary>Space' --create --type string --set "rofi -show window"
