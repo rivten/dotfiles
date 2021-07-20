@@ -89,6 +89,8 @@ Plugin 'jsborjesson/vim-uppercase-sql'
 Plugin 'tpope/vim-fugitive'
 Plugin 'preservim/vimux'
 Plugin 'preservim/nerdtree'
+Plugin 'lambdalisue/suda.vim'
+Plugin 'nelsyeung/twig.vim'
 
 call vundle#end()
 " enable filetype plugins

@@ -2,13 +2,22 @@
 
 cwd="$(git rev-parse --show-toplevel)"
 
-ln -s $cwd/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
-ln -s $cwd/ctags/default.ctags ~/.config/ctags/default.ctags
-ln -s $cwd/git/gitconfig ~/.gitconfig
-ln -s $cwd/git/gitignore ~/.gitignore
-ln -s $cwd/tmux/tmux.conf ~/.tmux.conf
-ln -s $cwd/vim/init.vim ~/.config/nvim/init.vim
-ln -s $cwd/vim/ginit.vim ~/.config/nvim/ginit.vim
-ln -s $cwd/zsh/zshrc ~/.zshrc
-ln -s $cwd/zsh/p10k.zsh ~/.p10k.zsh
-ln -s $cwd/cabal/config ~/.cabal/config
+[ ! -d "~/.config/alacritty" ] && mkdir -p ~/.config/alacritty
+[ ! -d "~/.config/ctags" ] && mkdir -p ~/.config/ctags
+[ ! -d "~/.config/nvim" ] && mkdir -p ~/.config/nvim
+[ ! -d "~/.config/cabal" ] && mkdir -p ~/.config/cabal
+[ ! -d "~/.config/xfce4/xfconf/xfce-perchannel-xml" ] && mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
+[ ! -d "~/.config/rofi" ] && mkdir -p ~/.config/rofi
+
+ln -sf $cwd/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -sf $cwd/ctags/default.ctags ~/.config/ctags/default.ctags
+ln -sf $cwd/git/gitconfig ~/.gitconfig
+ln -sf $cwd/git/gitignore ~/.gitignore
+ln -sf $cwd/tmux/tmux.conf ~/.tmux.conf
+ln -sf $cwd/vim/init.vim ~/.config/nvim/init.vim
+ln -sf $cwd/vim/ginit.vim ~/.config/nvim/ginit.vim
+ln -sf $cwd/zsh/zshrc ~/.zshrc
+ln -sf $cwd/zsh/p10k.zsh ~/.p10k.zsh
+ln -sf $cwd/cabal/config ~/.cabal/config
+ln -sf $cwd/xfce/keyboard_mapping.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
+ln -sf $cwd/rofi/config ~/.config/rofi/config
