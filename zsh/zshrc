@@ -126,3 +126,12 @@ export LS_COLORS
 
 # opam configuration
 test -r /home/hugo/.opam/opam-init/init.zsh && . /home/hugo/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+#compdef gdc
+
+_gdc_completion() {
+  eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _GDC_COMPLETE=complete_zsh gdc)
+}
+
+compdef _gdc_completion gdc
+
+export npm_config_prefix="$HOME/.local"

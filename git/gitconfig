@@ -1,7 +1,7 @@
 # To put in ~/.gitconfig
 [user]
-    name = rivten
-    email = rivten@riseup.net
+    name = hugo
+    email = hugo@gensdeconfiance.com
 [core]
     editor = nvim
     excludesFile = ~/.gitignore
