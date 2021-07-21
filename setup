@@ -6,7 +6,6 @@ cwd="$(git rev-parse --show-toplevel)"
 [ ! -d "~/.config/ctags" ] && mkdir -p ~/.config/ctags
 [ ! -d "~/.config/nvim" ] && mkdir -p ~/.config/nvim
 [ ! -d "~/.config/cabal" ] && mkdir -p ~/.config/cabal
-[ ! -d "~/.config/xfce4/xfconf/xfce-perchannel-xml" ] && mkdir -p ~/.config/xfce4/xfconf/xfce-perchannel-xml
 [ ! -d "~/.config/rofi" ] && mkdir -p ~/.config/rofi
 
 ln -sf $cwd/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
@@ -19,5 +18,6 @@ ln -sf $cwd/vim/ginit.vim ~/.config/nvim/ginit.vim
 ln -sf $cwd/zsh/zshrc ~/.zshrc
 ln -sf $cwd/zsh/p10k.zsh ~/.p10k.zsh
 ln -sf $cwd/cabal/config ~/.cabal/config
-ln -sf $cwd/xfce/keyboard_mapping.xml ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 ln -sf $cwd/rofi/config ~/.config/rofi/config
+
+./xfce/setup
