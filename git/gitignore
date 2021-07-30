@@ -2,3 +2,4 @@
 # or you could look at what is the expected global config location with
 # git config --get core.excludesFile
 tags
+.gutctags
