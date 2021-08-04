@@ -132,3 +132,5 @@ export WORDCHARS='.-'
 
 # opam configuration
 test -r /home/hugo/.opam/opam-init/init.zsh && . /home/hugo/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+export npm_config_prefix="$HOME/.local"
