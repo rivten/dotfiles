@@ -91,6 +91,7 @@ Plugin 'preservim/vimux'
 Plugin 'preservim/nerdtree'
 Plugin 'lambdalisue/suda.vim'
 Plugin 'nelsyeung/twig.vim'
+Plugin 'mustache/vim-mustache-handlebars'
 
 call vundle#end()
 " enable filetype plugins
@@ -183,7 +184,7 @@ else
 endif
 
 " trying to do autocomplete on file search
-set wildmode=longest,list:full,full
+set wildmode=longest,full
 set wildmenu
 
 " automatically reload modified files
