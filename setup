@@ -19,6 +19,8 @@ ln -sf $cwd/zsh/zshrc ~/.zshrc
 ln -sf $cwd/zsh/p10k.zsh ~/.p10k.zsh
 ln -sf $cwd/cabal/config ~/.cabal/config
 ln -sf $cwd/rofi/config ~/.config/rofi/config
+ln -sf $cwd/rofi/srcery.rasi ~/.config/rofi/srcery.rasi
+
 ln -sf $cwd/sqlite/sqliterc ~/.sqliterc
 
 ./xfce/setup
