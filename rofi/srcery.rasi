@@ -213,4 +213,9 @@ textbox-prompt-colon {
   text-color: inherit;
 }
 
+element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
 // vim:ft=css:ts=2:sw=2:fdm=marker
