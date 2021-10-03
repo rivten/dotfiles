@@ -426,28 +426,30 @@ endif
 let g:vimwiki_key_mappings = { 'links': 0, }
 
 " prose setup
-" adapter from
+" adapted from https://www.reddit.com/r/vim/comments/q03mqa/my_setup_for_prose/
 let w:ProseModeOn = 0
 
 function EnableProseMode()
-	Goyo 66
-	SoftPencil
-	echo "Prose Mode On"
+    setlocal spell spelllang=fr
+    Goyo 70
+    SoftPencil
+    echo "Prose Mode On"
 endfu
 
 function DisableProseMode()
-	Goyo!
-	NoPencil
-	echo "Prose Mode Off"
+    Goyo!
+    NoPencil
+    setlocal nospell
+    echo "Prose Mode Off"
 endfu
 
 function ToggleProseMode()
-	if w:ProseModeOn == 0
-		call EnableProseMode()
-		let w:ProseModeOn = 1
-	else
-		call DisableProseMode()
-	endif
+    if w:ProseModeOn == 0
+        call EnableProseMode()
+        let w:ProseModeOn = 1
+    else
+        call DisableProseMode()
+    endif
 endfu
 
 command Prose call EnableProseMode()
