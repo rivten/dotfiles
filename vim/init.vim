@@ -92,6 +92,7 @@ Plugin 'preservim/nerdtree'
 Plugin 'lambdalisue/suda.vim'
 Plugin 'nelsyeung/twig.vim'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'reedes/vim-pencil'
 
 call vundle#end()
 " enable filetype plugins
@@ -423,3 +424,32 @@ if get(g:, 'colors_name', '') == 'srcery'
 endif
 
 let g:vimwiki_key_mappings = { 'links': 0, }
+
+" prose setup
+" adapter from
+let w:ProseModeOn = 0
+
+function EnableProseMode()
+	Goyo 66
+	SoftPencil
+	echo "Prose Mode On"
+endfu
+
+function DisableProseMode()
+	Goyo!
+	NoPencil
+	echo "Prose Mode Off"
+endfu
+
+function ToggleProseMode()
+	if w:ProseModeOn == 0
+		call EnableProseMode()
+		let w:ProseModeOn = 1
+	else
+		call DisableProseMode()
+	endif
+endfu
+
+command Prose call EnableProseMode()
+command UnProse call DisableProseMode()
+command ToggleProse call ToggleProseMode()
