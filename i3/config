@@ -47,7 +47,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+a kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show window -matching fuzzy -sort-method fzf -sort -kb-mode-next "Ctrl+o"
+bindsym $mod+d exec --no-startup-id rofi -show run -matching fuzzy -sort-method fzf -sort -kb-mode-previous "Ctrl+o"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
