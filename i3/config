@@ -184,3 +184,5 @@ bar {
 default_border pixel 1
 focus_follows_mouse no
 hide_edge_borders both
+
+bindsym $mod+Shift+o exec i3lock -c 000000
