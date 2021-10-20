@@ -7,6 +7,7 @@ cwd="$(git rev-parse --show-toplevel)"
 [ ! -d "~/.config/nvim" ] && mkdir -p ~/.config/nvim
 [ ! -d "~/.config/cabal" ] && mkdir -p ~/.config/cabal
 [ ! -d "~/.config/rofi" ] && mkdir -p ~/.config/rofi
+[ ! -d "~/.config/i3" ] && mkdir -p ~/.config/i3
 
 ln -sf $cwd/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 ln -sf $cwd/ctags/default.ctags ~/.config/ctags/default.ctags
@@ -20,7 +21,7 @@ ln -sf $cwd/zsh/p10k.zsh ~/.p10k.zsh
 ln -sf $cwd/cabal/config ~/.cabal/config
 ln -sf $cwd/rofi/config.rasi ~/.config/rofi/config.rasi
 ln -sf $cwd/rofi/srcery.rasi ~/.config/rofi/srcery.rasi
-
 ln -sf $cwd/sqlite/sqliterc ~/.sqliterc
+ln -sf $cwd/i3/config ~/.config/i3/config
 
 ./xfce/setup
