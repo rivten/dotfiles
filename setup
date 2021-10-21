@@ -8,6 +8,7 @@ cwd="$(git rev-parse --show-toplevel)"
 [ ! -d "~/.config/cabal" ] && mkdir -p ~/.config/cabal
 [ ! -d "~/.config/rofi" ] && mkdir -p ~/.config/rofi
 [ ! -d "~/.config/i3" ] && mkdir -p ~/.config/i3
+[ ! -d "~/.config/i3status" ] && mkdir -p ~/.config/i3status
 
 ln -sf $cwd/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 ln -sf $cwd/ctags/default.ctags ~/.config/ctags/default.ctags
@@ -23,5 +24,6 @@ ln -sf $cwd/rofi/config.rasi ~/.config/rofi/config.rasi
 ln -sf $cwd/rofi/srcery.rasi ~/.config/rofi/srcery.rasi
 ln -sf $cwd/sqlite/sqliterc ~/.sqliterc
 ln -sf $cwd/i3/config ~/.config/i3/config
+ln -sf $cwd/i3/i3status-config ~/.config/i3status/config
 
-./xfce/setup
+#./xfce/setup
