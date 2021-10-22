@@ -47,7 +47,7 @@ colors:
 background_opacity: 1.0
 
 shell:
-    program: /usr/bin/tmux
+    program: /usr/bin/zsh
 
 scrolling:
     history: 1000
