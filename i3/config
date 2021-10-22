@@ -260,3 +260,11 @@ bindsym $mod+P mode "$mode_system"
 # scratchpad
 bindsym $mod+BackSpace move scratchpad
 bindsym $mod+equal scratchpad show
+
+bindsym --release $mod+Shift+q exec --no-startup-id screenshooter
+
+# Toggle bar (doens't really work)
+bindsym $mod+b bar mode toggle
+
+# Toggle notifications
+bindsym $mod+n exec --no-startup-id dunstctl set-paused toggle
