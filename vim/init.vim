@@ -66,7 +66,6 @@ Plugin 'ziglang/zig.vim'
 if has("win32")
 	Plugin 'nfvs/vim-perforce'
 endif
-Plugin 'tek256/simple-dark'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'habamax/vim-godot'
@@ -93,6 +92,7 @@ Plugin 'lambdalisue/suda.vim'
 Plugin 'nelsyeung/twig.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'reedes/vim-pencil'
+Plugin 'StanAngeloff/php.vim'
 
 call vundle#end()
 " enable filetype plugins
