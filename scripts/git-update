@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -eou pipefail
+
+currentBranchName=$(git rev-parse --abbrev-ref HEAD)
+mainBranchName=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
+git stash push --include-untracked --message "tmp-git-update"
+git fetch upstream --prune
+git checkout $mainBranchName
+git merge upstream/$mainBranchName --no-overwrite-ignore
+git push
+git checkout $currentBranchName
+git stash list | grep "tmp-git-update" && git stash pop
