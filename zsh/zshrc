@@ -117,6 +117,8 @@ source /usr/share/fzf/completion.zsh
 
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
+export PAGER="bat --style=plain"
+export MANPAGER="$PAGER"
 
 alias t='python ~/dev/t/t.py --task-dir ~/tasks --list tasks.txt'
 
@@ -129,6 +131,8 @@ LS_COLORS='rs=0:di=01;94:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:c
 export LS_COLORS
 
 export WORDCHARS='.-'
+
+eval "$(zoxide init zsh)"
 
 # opam configuration
 test -r /home/hugo/.opam/opam-init/init.zsh && . /home/hugo/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

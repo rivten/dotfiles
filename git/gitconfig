@@ -5,7 +5,7 @@
 [core]
     editor = nvim
     excludesFile = ~/.gitignore
-    pager = less --tabs=4 -RFX
+	pager = bat -p
 	quotePath = false
 	commitGraph = true
 [merge]
@@ -18,3 +18,5 @@
 	advertisePushOptions = true
 [gc]
 	writeCommitGraph = true
+[commit]
+	verbose = true
