@@ -121,6 +121,7 @@ export PAGER="bat --style=plain"
 export MANPAGER="$PAGER"
 
 alias t='python ~/dev/t/t.py --task-dir ~/tasks --list tasks.txt'
+alias l='exa'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -131,6 +132,7 @@ LS_COLORS='rs=0:di=01;94:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:c
 export LS_COLORS
 
 export WORDCHARS='.-'
+export FZF_DEFAULT_COMMAND='fd --type f'
 
 eval "$(zoxide init zsh)"
 

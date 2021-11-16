@@ -93,6 +93,7 @@ Plugin 'nelsyeung/twig.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'reedes/vim-pencil'
 Plugin 'StanAngeloff/php.vim'
+Plugin 'wsdjeg/vim-fetch'
 
 call vundle#end()
 " enable filetype plugins
