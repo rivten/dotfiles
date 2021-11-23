@@ -12,6 +12,7 @@ cwd="$(git rev-parse --show-toplevel)"
 [ ! -d "~/.config/dunst" ] && mkdir -p ~/.config/dunst
 [ ! -d "~/.config/redshift" ] && mkdir -p ~/.config/redshift
 [ ! -d "~/.config/redshift/hooks" ] && mkdir -p ~/.config/redshift/hooks
+[ ! -d "~/.config/picom" ] && mkdir -p ~/.config/picom
 
 ln -sf $cwd/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 ln -sf $cwd/ctags/default.ctags ~/.config/ctags/default.ctags
@@ -31,3 +32,4 @@ ln -sf $cwd/i3/i3status-config ~/.config/i3status/config
 ln -sf $cwd/dunst/dunstrc ~/.config/dunst/dunstrc
 ln -sf $cwd/redshift/redshift.conf ~/.config/redshift/redshift.conf
 ln -sf $cwd/redshift/hook ~/.config/redshift/hooks/hook
+ln -sf $cwd/picom/picom.conf ~/.config/picom/picom.conf
