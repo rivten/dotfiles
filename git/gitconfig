@@ -30,18 +30,27 @@
     log = delta
     reflog = delta
     show = delta
+    branch = bat
 [interactive]
     diffFilter = delta --color-only --features=interactive --dark
 [delta]
-    features = decorations
-    zero-style = dim syntax
-[delta "decorations"]
-    commit-decoration-style = blue ol
-    commit-style = raw
-    file-style = omit
-    hunk-header-decoration-style = blue
-    hunk-header-file-style = magenta
-    hunk-header-style = file line-number syntax
+    navigate = true
+    paging = always
+    tabs = 2
+
+    plus-emph-style = bold syntax auto
+    minus-style = normal auto
+    minus-emph-style = bold normal auto
+
+    commit-decoration-style = yellow ul
+    file-style = bold blue
+    file-decoration-style = blue ul
+    hunk-header-style = magenta line-number
+    hunk-header-decoration-style = magenta
+    hunk-header-file-style = bold magenta
+    hunk-header-line-number-style = bold magenta
+[fetch]
+    prune = true
 
 [alias]
   s = status -sb
@@ -51,7 +60,7 @@
   untracked = ls-files --others --exclude-standard
   ss = !git --no-pager show --stat
 
-  l = log --date=human-local --pretty=format:\"%C(yellow)%h%Creset %C(green)[%ad]%Creset %C(037)%an:%Creset %C(white)%s%Creset%C(auto)%d%Creset\"
+  l = log --date=iso8601 --pretty=format:\"%C(yellow)%h%Creset %C(green)[%ad]%Creset %C(037)%an:%Creset %C(white)%s%Creset%C(auto)%d%Creset\"
   rl = reflog --date=format:%T --pretty=format:\"%C(yellow)%h%Creset %C(037)%gD:%Creset %C(white)%gs%Creset%C(auto)%d%Creset\"
   ls = "!cd ${GIT_PREFIX:-.} && git l --stat"
   ld = log -p
@@ -66,6 +75,7 @@
   dc = diff --cached
   ds = diff --stat
   dh = diff HEAD
+  dib = !git diff $( git default-branch )...HEAD
 
   b = rev-parse --abbrev-ref HEAD
   br = branch -vv
