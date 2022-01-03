@@ -141,3 +141,6 @@ _gdc_completion() {
 compdef _gdc_completion gdc
 
 export npm_config_prefix="$HOME/.local"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform

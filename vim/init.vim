@@ -91,6 +91,11 @@ Plugin 'preservim/vimux'
 Plugin 'preservim/nerdtree'
 Plugin 'lambdalisue/suda.vim'
 Plugin 'nelsyeung/twig.vim'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'reedes/vim-pencil'
+Plugin 'StanAngeloff/php.vim'
+Plugin 'wsdjeg/vim-fetch'
+Plugin 'udalov/kotlin-vim'
 
 call vundle#end()
 " enable filetype plugins
@@ -128,7 +133,7 @@ set langmenu=en_US.UTF-8
 if has("win32")
 	language messages en
 else
-	language messages en_GB.utf-8
+	"language messages en_GB.utf-8
 endif
 ":language mes EN
 
@@ -276,15 +281,15 @@ nnoremap <leader>b :make<enter>
 
 " Convert slashes to backslashes for Windows.
 if has('win32')
-  nmap ,cs :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
-  nmap ,cl :let @*=substitute(expand("%:p"), "\\", "/", "g")<CR>
-  nmap ,cm :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
+  nmap ,cs :let @+=substitute(expand("%"), "/", "\\", "g")<CR>
+  nmap ,cl :let @+=substitute(expand("%:p"), "\\", "/", "g")<CR>
+  nmap ,cm :let @+=substitute(expand("%:p"), "/", "\\", "g")<CR>
 
   " This will copy the path in 8.3 short format, for DOS and Windows 9x
-  nmap ,c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
+  nmap ,c8 :let @+=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
 else
-  nmap ,cs :let @*=expand("%")<CR>
-  nmap ,cl :let @*=expand("%:p")<CR>
+  nmap ,cs :let @+=expand("%")<CR>
+  nmap ,cl :let @+=expand("%:p")<CR>
 endif
 
 "I do this because otherwise, on linux at least, the whole /usr/include folder
@@ -411,3 +416,36 @@ if get(g:, 'colors_name', '') == 'srcery'
 endif
 
 let g:vimwiki_key_mappings = { 'links': 0, }
+" prose setup
+" adapted from https://www.reddit.com/r/vim/comments/q03mqa/my_setup_for_prose/
+let w:ProseModeOn = 0
+
+function EnableProseMode()
+    setlocal spell spelllang=fr
+    Goyo 70
+    SoftPencil
+    echo "Prose Mode On"
+endfu
+
+function DisableProseMode()
+    Goyo!
+    NoPencil
+    setlocal nospell
+    echo "Prose Mode Off"
+endfu
+
+function ToggleProseMode()
+    if w:ProseModeOn == 0
+        call EnableProseMode()
+        let w:ProseModeOn = 1
+    else
+        call DisableProseMode()
+    endif
+endfu
+
+command Prose call EnableProseMode()
+command UnProse call DisableProseMode()
+command ToggleProse call ToggleProseMode()
+
+let g:rustfmt_autosave = 1
+let g:cargo_makeprg_params = 'build'
