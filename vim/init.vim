@@ -66,7 +66,6 @@ Plugin 'ziglang/zig.vim'
 if has("win32")
 	Plugin 'nfvs/vim-perforce'
 endif
-Plugin 'tek256/simple-dark'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'habamax/vim-godot'
@@ -188,7 +187,7 @@ else
 endif
 
 " trying to do autocomplete on file search
-set wildmode=longest,list:full,full
+set wildmode=longest,full
 set wildmenu
 
 " automatically reload modified files
@@ -338,8 +337,13 @@ if executable("fzf")
         nnoremap <C-P> :Files<CR>
     endif
     nnoremap <leader>n :Buffers<CR>
-    if executable("ag")
-        nnoremap <C-S> :Ag<CR>
+
+    " remap commands to avoid searching for filenames
+    command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+    command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+    if executable("rg")
+        nnoremap <C-S> :Rg<CR>
     endif
 else
     " no fzf configuration
@@ -353,15 +357,21 @@ endif
 
 let $PYTHONUNBUFFERED=1
 
-if executable("ag")
-    set grepprg=ag\ --vimgrep\ --smart-case
+"if executable("ag")
+"    set grepprg=ag\ --vimgrep\ --smart-case
+"endif
+
+if executable("rg")
+    set grepprg=rg\ --vimgrep\ --smart-case
 endif
 
 " TODO(hugo): do I need this ?
 " set wildignorecase
 set fileignorecase
 
-set termguicolors
+if !has("nvim")
+    set termguicolors
+endif
 
 " Exiting in the terminal
 tnoremap jk <C-\><C-n>

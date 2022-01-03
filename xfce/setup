@@ -4,4 +4,4 @@ cwd="$(git rev-parse --show-toplevel)"
 
 xfconf-query --channel xfce4-keyboard-shortcuts --property '/commands/custom/<Primary><Alt>t' --create --type string --set "$cwd/term/term"
 
-xfconf-query --channel xfce4-keyboard-shortcuts --property '/commands/custom/<Primary>Space' --create --type string --set "rofi -show window"
+xfconf-query --channel xfce4-keyboard-shortcuts --property '/commands/custom/<Primary>space' --create --type string --set "rofi -show window -matching fuzzy -sort-method fzf -sort -kb-mode-next \"Ctrl+o\""
