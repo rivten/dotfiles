@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euo pipefail
+
+xrandr --output eDP-1 --mode 1920x1200 --primary --output DP-3 --mode 1920x1080 --above eDP-1
+

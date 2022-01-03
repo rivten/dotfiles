@@ -1,0 +1,52 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if ! command -v jq &>/dev/null
+then
+    echo "jq command not found"
+    exit
+fi
+
+if ! command -v curlie &>/dev/null
+then
+    echo "curlie command not found"
+    exit
+fi
+
+login() {
+    local env="${1-local}"
+    local email="${2-nicolas@gensdeconfiance.com}"
+    local password="${3-Nicolas44}"
+    local uniqueDeviceId="${4-aaaaaaaa}"
+
+    case $env in
+        "local")
+            local url=http://gensdeconfiance.local
+            ;;
+        "staging")
+            local url=https://staging.gensdeconfiance.com
+            ;;
+        "preprod")
+            local url=https://preprod.gensdeconfiance.com
+            ;;
+        "prod")
+            local url=https://gensdeconfiance.com
+            ;;
+    esac
+
+    curlie \
+        POST \
+        -u gdc:gdc \
+        $url/api/v2/members/login \
+        email=$email \
+        password=$password \
+        uniqueDeviceId="$uniqueDeviceId" \
+        2>/dev/null \
+            | jq \
+                --arg uniqueDeviceId "$uniqueDeviceId" \
+                -r \
+                '{appVanity: .user.vanity, appToken: .user.appToken, uniqueDeviceId: .user.vanity}'
+}
+
+login "$@"

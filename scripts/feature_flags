@@ -1,0 +1,3 @@
+#!/bin/bash
+
+(cd /home/hugo/dev/infra/tools/feature_flag/ && poetry run python main.py --env preprod --dump | jq -r '.[] | .name' | fzf --preview="poetry run python main.py --env preprod --dump | jq '.[] | select(.name==\"{}\")'")
