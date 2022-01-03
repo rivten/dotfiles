@@ -141,7 +141,6 @@ eval "$(zoxide init zsh)"
 
 # opam configuration
 test -r /home/hugo/.opam/opam-init/init.zsh && . /home/hugo/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-<<<<<<< HEAD
 #compdef gdc
 
 _gdc_completion() {
@@ -153,8 +152,3 @@ compdef _gdc_completion gdc
 export npm_config_prefix="$HOME/.local"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
-||||||| 30869b1
-=======
-
-export npm_config_prefix="$HOME/.local"
->>>>>>> master
