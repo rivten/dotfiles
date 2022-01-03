@@ -13,7 +13,7 @@
 [push]
     default = tracking
 [github]
-    user = rivten
+    user = hugo
 [receive]
 	advertisePushOptions = true
 [gc]

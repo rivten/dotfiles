@@ -82,6 +82,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+#plugins=(git zsh-autosuggestions zsh-vi-mode)
 plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
@@ -103,6 +104,11 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+#function zvm_after_init() {
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+#}
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -111,9 +117,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
 
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
@@ -141,6 +144,5 @@ _gdc_completion() {
 compdef _gdc_completion gdc
 
 export npm_config_prefix="$HOME/.local"
-
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
