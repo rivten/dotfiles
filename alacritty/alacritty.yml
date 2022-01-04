@@ -5,7 +5,7 @@ window:
 font:
     normal:
         #family: Liberation Mono
-        family: Monospace
+        family: DejaVu Sans Mono
     size: 10.0
 
 # from https://github.com/srcery-colors/srcery-terminal/blob/master/alacritty/srcery_alacritty.yml
