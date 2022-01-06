@@ -38,7 +38,9 @@ at
 gnuplot
 inotify-tools
 rofi
-i3
+i3-gaps
+i3status
+i3lock
 zoxide
 bat
 redshift
@@ -68,3 +70,4 @@ nnn
 libreoffice-fresh
 cgdb
 imagemagick
+ttf-font-awesome
