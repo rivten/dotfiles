@@ -49,6 +49,7 @@
 
   # Left prompt segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+    nnn
     # context                 # user@host
     dir                       # current directory
     vcs                       # git status
@@ -146,6 +147,10 @@
   # Remove space between '⇣' and '⇡' and all trailing spaces.
   typeset -g POWERLEVEL9K_VCS_CONTENT_EXPANSION='${${${P9K_CONTENT/⇣* :⇡/⇣⇡}// }//:/ }'
 
+  # NNN
+  typeset -g POWERLEVEL9K_NNN_FOREGROUND=72
+  typeset -g POWERLEVEL9K_NNN_VISUAL_IDENTIFIER_EXPANSION='(N)'
+
   # Grey current time.
   typeset -g POWERLEVEL9K_TIME_FOREGROUND=$grey
   # Format for the current time: 09:51:02. See `man 3 strftime`.
@@ -185,6 +190,11 @@
   # If p10k is already loaded, reload configuration.
   # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.
   (( ! $+functions[p10k] )) || p10k reload
+}
+
+function prompt_nnn() {
+  [[ $NNNLVL == (0|) ]] && return
+  _p9k_prompt_segment $0 6 $_p9k_color1 NNN_ICON 0
 }
 
 # Tell `p10k configure` which file it should overwrite.
