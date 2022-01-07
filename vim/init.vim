@@ -95,6 +95,7 @@ Plugin 'reedes/vim-pencil'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'wsdjeg/vim-fetch'
 Plugin 'udalov/kotlin-vim'
+Plugin 'mcchrish/nnn.vim'
 
 call vundle#end()
 " enable filetype plugins
@@ -374,7 +375,7 @@ if !has("nvim")
 endif
 
 " Exiting in the terminal
-tnoremap jk <C-\><C-n>
+tnoremap JK <C-\><C-n>
 
 let g:grammalecte_cli_py="/home/hugo/programs/Grammalecte-fr-v2.1.1/grammalecte-cli.py"
 let g:grammalecte_disable_rules = 'apostrophe_typographique apostrophe_typographique_après_t espaces_début_ligne espaces_milieu_ligne espaces_fin_de_ligne typo_points_suspension1 typo_tiret_incise nbsp_avant_double_ponctuation nbsp_avant_deux_points nbsp_après_chevrons_ouvrants nbsp_avant_chevrons_fermants1 unit_nbsp_avant_unités1 unit_nbsp_avant_unités2 unit_nbsp_avant_unités3 typo_guillemets_typographiques_doubles_fermants typo_guillemets_typographiques_doubles_ouvrants'
@@ -459,3 +460,6 @@ command ToggleProse call ToggleProseMode()
 
 let g:rustfmt_autosave = 1
 let g:cargo_makeprg_params = 'build'
+
+let g:nnn#set_default_mappings = 0
+nnoremap <leader><Space> :NnnPicker<CR>

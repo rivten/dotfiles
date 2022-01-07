@@ -71,3 +71,4 @@ libreoffice-fresh
 cgdb
 imagemagick
 ttf-font-awesome
+github-cli
