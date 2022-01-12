@@ -51,7 +51,6 @@ redshift
 dunst
 ttf-dejavu
 fd
-picom
 man-db
 jq
 dust
