@@ -49,6 +49,7 @@
 
   # Left prompt segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+    vim_shell
     nnn
     # context                 # user@host
     dir                       # current directory
@@ -150,6 +151,12 @@
   # NNN
   typeset -g POWERLEVEL9K_NNN_FOREGROUND=72
   typeset -g POWERLEVEL9K_NNN_VISUAL_IDENTIFIER_EXPANSION='(N)'
+
+  ###########################[ vim_shell: vim shell indicator (:sh) ]###########################
+  # Vim shell indicator color.
+  typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=34
+  # Custom icon.
+  typeset -g POWERLEVEL9K_VIM_SHELL_VISUAL_IDENTIFIER_EXPANSION='(V)'
 
   # Grey current time.
   typeset -g POWERLEVEL9K_TIME_FOREGROUND=$grey

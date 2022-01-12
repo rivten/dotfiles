@@ -96,6 +96,13 @@ Plugin 'StanAngeloff/php.vim'
 Plugin 'wsdjeg/vim-fetch'
 Plugin 'udalov/kotlin-vim'
 Plugin 'mcchrish/nnn.vim'
+Plugin 'pgdouyon/vim-yin-yang'
+
+"Some cool black&white colorscheme, just in case
+"Plugin 'pbrisbin/vim-colors-off'
+"Plugin 'huyvohcmc/atlas.vim'
+"Plugin 'andreasvc/vim-256noir'
+"Plugin 'ewilazarus/preto'
 
 call vundle#end()
 " enable filetype plugins
@@ -108,8 +115,9 @@ set title
 
 "set background=dark
 "colorscheme gruvbox
-colorscheme srcery
-let g:srcery_underline=0
+"colorscheme srcery
+"let g:srcery_underline=0
+colorscheme yin
 " to have no background in terminal
 " highlight Normal guibg=None
 
@@ -253,8 +261,87 @@ if has('autocmd')
         autocmd StdinReadPre * let s:std_in=1
         autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
+        autocmd BufWritePre *.py call PythonFormat()
+
 	augroup END
 endif
+
+function PythonFormat()
+    execute '%!autopep8 --aggressive --aggressive - '
+endfu
+
+function! PythonFormat() abort
+  " Save cursor position and many other things.
+  let view = winsaveview()
+
+  if !executable('autopep8')
+    echohl Error | echomsg "no autopep8 binary found in PATH" | echohl None
+    return
+  endif
+
+  let cmdline = 'autopep8 --aggressive --aggressive -'
+  let current_buf = bufnr('')
+
+  " The formatted code is output on stdout, the errors go on stderr.
+  if exists('*systemlist')
+    silent let out = systemlist(cmdline, current_buf)
+  else
+    silent let out = split(system(cmdline, current_buf))
+  endif
+  "if len(out) == 1
+  "  if out[0] == "error: unrecognized parameter: '--ast-check'"
+  "    let cmdline = 'zig fmt --stdin'
+  "    if exists('*systemlist')
+  "      silent let out = systemlist(cmdline, current_buf)
+  "    else
+  "      silent let out = split(system(cmdline, current_buf))
+  "    endif
+  "  endif
+  "endif
+  let err = v:shell_error
+
+
+  if err == 0
+    " remove undo point caused via BufWritePre.
+    try | silent undojoin | catch | endtry
+
+    " Replace the file content with the formatted version.
+    if exists('*deletebufline')
+      call deletebufline(current_buf, len(out), line('$'))
+    else
+      silent execute ':' . len(out) . ',' . line('$') . ' delete _'
+    endif
+    call setline(1, out)
+
+    " No errors detected, close the loclist.
+    call setloclist(0, [], 'r')
+    lclose
+  elseif get(g:, 'autopep8_parse_errors', 1)
+    let errors = s:parse_errors(expand('%'), out)
+
+    call setloclist(0, [], 'r', {
+        \ 'title': 'Errors',
+        \ 'items': errors,
+        \ })
+
+    let max_win_height = get(g:, 'zig_fmt_max_window_height', 5)
+    " Prevent the loclist from becoming too long.
+    let win_height = min([max_win_height, len(errors)])
+    " Open the loclist, but only if there's at least one error to show.
+    execute 'silent! lwindow ' . win_height
+  endif
+
+  call winrestview(view)
+
+  if err != 0
+    echohl Error | echomsg "autopep8 returned error" | echohl None
+    return
+  endif
+
+  " Run the syntax highlighter on the updated content and recompute the folds if
+  " needed.
+  syntax sync fromstart
+endfunction
 
 " no backup
 set nobackup
