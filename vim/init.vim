@@ -4,7 +4,6 @@
 " There are three plugins that might need direct install :
 " - vundlevim/vundle
 " - zeux/qgrep
-" - tek256/simple-dark
 "
 " Also, this might only work in neovim. Not sure at all about pure vanilla vim
 " Now, the whole windows/linux stuff starts to appear.
@@ -551,6 +550,7 @@ let g:cargo_makeprg_params = 'build'
 
 let g:nnn#set_default_mappings = 0
 nnoremap <leader><Space> :NnnPicker<CR>
+nnoremap <leader>f :NnnExplorer<CR>
 
 let g:gutentags_project_root = ['.gutctags']
 
