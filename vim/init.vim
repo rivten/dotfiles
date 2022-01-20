@@ -115,9 +115,9 @@ set title
 
 "set background=dark
 "colorscheme gruvbox
-"colorscheme srcery
-"let g:srcery_underline=0
-colorscheme yin
+colorscheme srcery
+let g:srcery_underline=0
+"colorscheme yin
 " to have no background in terminal
 " highlight Normal guibg=None
 
