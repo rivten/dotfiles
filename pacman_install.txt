@@ -71,3 +71,7 @@ cgdb
 imagemagick
 ttf-font-awesome
 github-cli
+unzip
+zip
+lsof
+man-pages

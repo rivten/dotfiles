@@ -3,3 +3,4 @@
 # git config --get core.excludesFile
 tags
 .gutctags
+.lvimrc

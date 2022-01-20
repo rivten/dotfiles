@@ -96,6 +96,8 @@ Plugin 'StanAngeloff/php.vim'
 Plugin 'wsdjeg/vim-fetch'
 Plugin 'mcchrish/nnn.vim'
 Plugin 'pgdouyon/vim-yin-yang'
+Plugin 'fatih/vim-go'
+Plugin 'embear/vim-localvimrc'
 
 "Some cool black&white colorscheme, just in case
 "Plugin 'pbrisbin/vim-colors-off'
@@ -114,9 +116,9 @@ set title
 
 "set background=dark
 "colorscheme gruvbox
-"colorscheme srcery
-"let g:srcery_underline=0
-colorscheme yin
+colorscheme srcery
+let g:srcery_underline=0
+"colorscheme yin
 " to have no background in terminal
 " highlight Normal guibg=None
 
@@ -549,3 +551,8 @@ let g:cargo_makeprg_params = 'build'
 
 let g:nnn#set_default_mappings = 0
 nnoremap <leader><Space> :NnnPicker<CR>
+
+let g:gutentags_project_root = ['.gutctags']
+
+let g:localvimrc_ask = 0
+let g:localvimrc_sandbox = 0
