@@ -124,7 +124,7 @@ export PAGER="bat --style=plain"
 export MANPAGER="$PAGER"
 
 alias t='python ~/dev/t/t.py --task-dir ~/tasks --list tasks.txt'
-alias l='exa'
+alias l='exa -lhia'
 alias v='nvim'
 alias q='exit'
 
