@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# configure keyboard mapping
+cwd="$(git rev-parse --show-toplevel)"
+sudo mkdir -p /etc/X11/xorg.conf.d/
+sudo cp $cwd/20-keyboard.conf /etc/X11/xorg.conf.d/20-keyboard.conf
+
 # setup vim
 mkdir -p ~/.vim/bundle/Vundle.vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -14,3 +19,4 @@ git clone https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM:-~/.oh-my-zsh/c
 # setup t
 git clone https://github.com/sjl/t ~/dev/t
 mkdir ~/tasks
+
