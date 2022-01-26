@@ -97,6 +97,7 @@ Plugin 'mcchrish/nnn.vim'
 Plugin 'pgdouyon/vim-yin-yang'
 Plugin 'fatih/vim-go'
 Plugin 'embear/vim-localvimrc'
+Plugin 'akinsho/toggleterm.nvim'
 
 "Some cool black&white colorscheme, just in case
 "Plugin 'pbrisbin/vim-colors-off'
@@ -266,20 +267,16 @@ if has('autocmd')
 	augroup END
 endif
 
-function PythonFormat()
-    execute '%!autopep8 --aggressive --aggressive - '
-endfu
-
 function! PythonFormat() abort
   " Save cursor position and many other things.
   let view = winsaveview()
 
-  if !executable('autopep8')
-    echohl Error | echomsg "no autopep8 binary found in PATH" | echohl None
+  if !executable('black')
+    echohl Error | echomsg "no black binary found in PATH" | echohl None
     return
   endif
 
-  let cmdline = 'autopep8 --aggressive --aggressive -'
+  let cmdline = 'black -q -'
   let current_buf = bufnr('')
 
   " The formatted code is output on stdout, the errors go on stderr.
@@ -556,3 +553,8 @@ let g:gutentags_project_root = ['.gutctags']
 
 let g:localvimrc_ask = 0
 let g:localvimrc_sandbox = 0
+
+lua require("toggleterm").setup{direction = 'float'}
+
+nnoremap <C-j><C-k> :ToggleTerm<CR>
+tnoremap <C-j><C-k> <C-\><C-n>:ToggleTerm<CR>

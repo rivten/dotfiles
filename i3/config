@@ -225,7 +225,10 @@ client.placeholder      $xgray3       $hard_black $bright_black $xgray3   $xgray
 client.background       $black
 
 bar {
-    status_command i3status
+    status_command python3 ~/dev/dotfiles/i3/status.py
+    separator_symbol " / " 
+    workspace_buttons yes
+    position bottom
     colors {
         background $black
         statusline $white
