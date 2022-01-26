@@ -263,20 +263,21 @@ if has('autocmd')
         autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
         autocmd BufWritePre *.py call PythonFormat()
+        autocmd BufWritePre *.c call ClangFormat()
 
 	augroup END
 endif
 
-function! PythonFormat() abort
+function! RunFormatter(executable, cmdline) abort
   " Save cursor position and many other things.
   let view = winsaveview()
 
-  if !executable('black')
-    echohl Error | echomsg "no black binary found in PATH" | echohl None
+  if !executable(a:executable)
+    echohl Error | echomsg "no ". a:executable . " binary found in PATH" | echohl None
     return
   endif
 
-  let cmdline = 'black -q -'
+  let cmdline = a:cmdline
   let current_buf = bufnr('')
 
   " The formatted code is output on stdout, the errors go on stderr.
@@ -285,16 +286,6 @@ function! PythonFormat() abort
   else
     silent let out = split(system(cmdline, current_buf))
   endif
-  "if len(out) == 1
-  "  if out[0] == "error: unrecognized parameter: '--ast-check'"
-  "    let cmdline = 'zig fmt --stdin'
-  "    if exists('*systemlist')
-  "      silent let out = systemlist(cmdline, current_buf)
-  "    else
-  "      silent let out = split(system(cmdline, current_buf))
-  "    endif
-  "  endif
-  "endif
   let err = v:shell_error
 
 
@@ -338,6 +329,14 @@ function! PythonFormat() abort
   " Run the syntax highlighter on the updated content and recompute the folds if
   " needed.
   syntax sync fromstart
+endfunction
+
+function! PythonFormat() abort
+    call RunFormatter('black', 'black -q -')
+endfunction
+
+function! ClangFormat() abort
+    call RunFormatter('clang-format', 'clang-format -')
 endfunction
 
 " no backup
