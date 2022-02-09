@@ -23,21 +23,6 @@ status.register("clock", format=("UTC %H:%M", "UTC"))
 # status.register("clock", format = ("%a %-d %b %R", "Asia/Singapore"))
 # format="%a %-d %b %R",)
 
-status.register(
-    "battery",
-    format="{status}/{consumption:.2f}W {percentage:.2f}% {remaining:%E%hh:%Mm}",
-    color=red,
-    full_color=green,
-    charging_color=green,
-    alert=True,
-    alert_percentage=10,
-    status={
-        "DIS": "↓",
-        "CHR": "↑",
-        "FULL": "=",
-    },
-)
-
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
 # status.register("load", format="{avg1}")
@@ -82,7 +67,7 @@ status.register(
 
 status.register(
     "cpu_usage_bar",
-    format="{usage_bar_cpu0}{usage_bar_cpu1}{usage_bar_cpu2}{usage_bar_cpu3}{usage_bar_cpu4}{usage_bar_cpu5}{usage_bar_cpu6}{usage_bar_cpu7}{usage_bar_cpu8}{usage_bar_cpu9}{usage_bar_cpu10}{usage_bar_cpu11}",
+    format="{usage_bar_cpu0}{usage_bar_cpu1}{usage_bar_cpu2}{usage_bar_cpu3}",
     bar_type="vertical",
     start_color=yellow,
     end_color=red,
@@ -97,21 +82,13 @@ status.register(
 
 status.register(
     "network",
-    interface="wlp0s20f3",
+    interface="wlp4s0",
     format_up="{bytes_sent} k↑ {bytes_recv} k↓ {essid} {quality}%",
     format_down="X",
     dynamic_color=True,
     start_color=green,
     end_color=yellow,
     color_down=red,
-)
-
-
-status.register(
-    "shell",
-    command='(nmcli con show --active | grep gdc-vpn > /dev/null) && echo "vpn up" || (echo "vpn down" && exit 1)',
-    color=green,
-    error_color=yellow,
 )
 
 # status.register("online",

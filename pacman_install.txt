@@ -21,8 +21,6 @@ sdl2_ttf
 binutils
 ocaml
 opam
-postgresql
-mariadb
 mdp
 openconnect
 python-virtualenv
@@ -38,8 +36,7 @@ at
 gnuplot
 inotify-tools
 rofi
-i3-gaps
-i3status
+i3
 i3lock
 zoxide
 bat
@@ -63,7 +60,6 @@ autorandr
 pavucontrol
 networkmanager-openvpn
 openvpn
-xinit
 curlie
 nnn
 libreoffice-fresh
@@ -75,3 +71,6 @@ unzip
 zip
 lsof
 man-pages
+python-pip
+ttf-liberation
+ttf-iosevka
