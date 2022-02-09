@@ -4,9 +4,9 @@ window:
 
 font:
     normal:
-        #family: Liberation Mono
-        family: DejaVu Sans Mono
-    size: 10.0
+        family: Liberation Mono
+        #family: DejaVu Sans Mono
+    size: 11.0
 
 # from https://github.com/srcery-colors/srcery-terminal/blob/master/alacritty/srcery_alacritty.yml
 
@@ -54,7 +54,8 @@ scrolling:
     auto_scroll: false
 
 key_bindings:
-  - { key: PageUp,   mods: Shift,   action: ScrollPageUp   }
-  - { key: PageDown, mods: Shift,   action: ScrollPageDown }
-  - { key: End,      mods: Shift,   action: ScrollToBottom }
-  - { key: Home,     mods: Shift,   action: ScrollToTop    }
+  - { key: PageUp,   mods: Shift,         action: ScrollPageUp   }
+  - { key: PageDown, mods: Shift,         action: ScrollPageDown }
+  - { key: End,      mods: Shift,         action: ScrollToBottom }
+  - { key: Home,     mods: Shift,         action: ScrollToTop    }
+  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance    }

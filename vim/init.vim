@@ -99,6 +99,7 @@ Plugin 'pgdouyon/vim-yin-yang'
 Plugin 'fatih/vim-go'
 Plugin 'embear/vim-localvimrc'
 Plugin 'akinsho/toggleterm.nvim'
+Plugin 'iosmanthus/vim-nasm'
 
 "Some cool black&white colorscheme, just in case
 "Plugin 'pbrisbin/vim-colors-off'
@@ -263,9 +264,11 @@ if has('autocmd')
         autocmd StdinReadPre * let s:std_in=1
         autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
-        autocmd BufWritePre *.py call PythonFormat()
-        autocmd BufWritePre *.c call ClangFormat()
+	augroup END
 
+	augroup autoformat_group
+        autocmd BufWritePre *.py call PythonFormat()
+        autocmd BufWritePre *.c,*.h,*.cpp call ClangFormat()
 	augroup END
 endif
 
@@ -337,7 +340,7 @@ function! PythonFormat() abort
 endfunction
 
 function! ClangFormat() abort
-    call RunFormatter('clang-format', 'clang-format -')
+    call RunFormatter('clang-format', 'clang-format --style=WebKit -')
 endfunction
 
 " no backup
@@ -516,7 +519,7 @@ let g:vimwiki_key_mappings = { 'links': 0, }
 let w:ProseModeOn = 0
 
 function EnableProseMode()
-    setlocal spell spelllang=fr
+    "setlocal spell spelllang=fr
     Goyo 70
     SoftPencil
     echo "Prose Mode On"
@@ -525,7 +528,7 @@ endfu
 function DisableProseMode()
     Goyo!
     NoPencil
-    setlocal nospell
+    "setlocal nospell
     echo "Prose Mode Off"
 endfu
 
@@ -552,9 +555,21 @@ nnoremap <leader>f :NnnExplorer<CR>
 let g:gutentags_project_root = ['.gutctags']
 
 let g:localvimrc_ask = 0
-let g:localvimrc_sandbox = 0
+let g:localvimrc_sandbox = 1
 
 lua require("toggleterm").setup{direction = 'float'}
 
 nnoremap <C-j><C-k> :ToggleTerm<CR>
 tnoremap <C-j><C-k> <C-\><C-n>:ToggleTerm<CR>
+
+nnoremap <M-j> <C-w>j
+nnoremap <M-l> <C-w>l
+nnoremap <M-k> <C-w>k
+nnoremap <M-h> <C-w>h
+
+tnoremap <M-j> <C-\><C-n><C-w>j
+tnoremap <M-l> <C-\><C-n><C-w>l
+tnoremap <M-k> <C-\><C-n><C-w>k
+tnoremap <M-h> <C-\><C-n><C-w>h
+
+nnoremap <C-Q> :Tags<CR>
