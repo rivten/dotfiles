@@ -1,0 +1,11 @@
+#!/bin/bash
+
+setxkbmap fr bepo
+ln -sf /home/hugo/dev/dotfiles/i3/config_bepo /home/hugo/.config/i3/config
+ln -sf /home/hugo/dev/dotfiles/vim/init_bepo.vim /home/hugo/.config/nvim/init.vim
+i3-msg reload
+read
+ln -sf /home/hugo/dev/dotfiles/vim/init.vim /home/hugo/.config/nvim/init.vim
+ln -sf /home/hugo/dev/dotfiles/i3/config /home/hugo/.config/i3/config
+i3-msg reload
+setxkbmap fr
