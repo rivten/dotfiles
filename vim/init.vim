@@ -99,6 +99,8 @@ Plugin 'fatih/vim-go'
 Plugin 'embear/vim-localvimrc'
 Plugin 'akinsho/toggleterm.nvim'
 Plugin 'iosmanthus/vim-nasm'
+Plugin 'evanleck/vim-svelte'
+"Plugin 'michamos/vim-bepo'
 
 "Some cool black&white colorscheme, just in case
 "Plugin 'pbrisbin/vim-colors-off'
