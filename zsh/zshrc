@@ -128,6 +128,8 @@ alias l='exa -lhai'
 alias v='nvim'
 alias q='exit'
 
+export FZF_DEFAULT_OPTS="--bind ctrl-t:down,ctrl-s:up"
+
 export NNN_FIFO="/tmp/nnn.fifo"
 export NNN_PLUG="z:autojump;o:fzopen;v:-!nvim;h:-!hx $nnn*"
 
@@ -152,7 +154,7 @@ n ()
     # stty lwrap undef
     # stty lnext undef
 
-    nnn -edH "$@"
+    "$HOME/.local/bin/nnn" -edH "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
             . "$NNN_TMPFILE"
