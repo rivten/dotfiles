@@ -72,7 +72,6 @@ Plugin 'srcery-colors/srcery-vim'
 Plugin 'elixir-editors/vim-elixir'
 Plugin 'pangloss/vim-javascript'
 Plugin 'MaxMEllon/vim-jsx-pretty'
-Plugin 'tpope/vim-surround'
 Plugin 'mattn/emmet-vim'
 Plugin 'vhdirk/vim-cmake'
 Plugin 'dpelle/vim-Grammalecte'
@@ -560,8 +559,8 @@ let g:localvimrc_sandbox = 1
 
 lua require("toggleterm").setup{direction = 'float'}
 
-nnoremap <C-j><C-k> :ToggleTerm<CR>
-tnoremap <C-j><C-k> <C-\><C-n>:ToggleTerm<CR>
+nnoremap <C-t><C-s> :ToggleTerm<CR>
+tnoremap <C-t><C-s> <C-\><C-n>:ToggleTerm<CR>
 
 nnoremap <M-t> <C-w>j
 nnoremap <M-r> <C-w>l
@@ -574,9 +573,6 @@ tnoremap <M-s> <C-\><C-n><C-w>k
 tnoremap <M-c> <C-\><C-n><C-w>h
 
 nnoremap <C-Q> :Tags<CR>
-
-nnoremap h c
-nnoremap l r
 
 let g:fzf_action = {
   \ 'ctrl-x': 'split',

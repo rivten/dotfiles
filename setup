@@ -33,3 +33,4 @@ ln -sf $cwd/dunst/dunstrc ~/.config/dunst/dunstrc
 ln -sf $cwd/redshift/redshift.conf ~/.config/redshift/redshift.conf
 ln -sf $cwd/redshift/hook ~/.config/redshift/hooks/hook
 ln -sf $cwd/picom/picom.conf ~/.config/picom/picom.conf
+ln -sf $cwd/less/lesskey ~/.lesskey
