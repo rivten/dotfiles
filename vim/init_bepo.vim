@@ -181,7 +181,9 @@ lmap ù %
 lmap ’ `
 
 " no more esc
-inoremap ts <ESC>
+inoremap <Tab> <ESC>
+inoremap <S-Tab> <ESC>
+vnoremap <Tab> <ESC>
 
 " changing leader key to comma
 let mapleader=","
@@ -559,8 +561,8 @@ let g:localvimrc_sandbox = 1
 
 lua require("toggleterm").setup{direction = 'float'}
 
-nnoremap <C-t><C-s> :ToggleTerm<CR>
-tnoremap <C-t><C-s> <C-\><C-n>:ToggleTerm<CR>
+nnoremap þß :ToggleTerm<CR>
+tnoremap þß <C-\><C-n>:ToggleTerm<CR>
 
 nnoremap <M-t> <C-w>j
 nnoremap <M-r> <C-w>l
@@ -639,3 +641,10 @@ call s:tomap( 'aé',  'aw'    )    "idem pour [aw] et [aé]
 call s:tomap( 'aÉ',  'aW'    )    "idem pour [aW] et [aÉ]
 call s:tomap( 'ié',  'iw'    )    "idem pour [iw] et [ié]
 call s:tomap( 'iÉ',  'iW'    )    "idem pour [iW] et [iÉ]
+
+nnoremap <CR> :
+
+" remap for tpope's plugins
+let g:nremap = {'t': 'j', 'c': 'h', 's': 'k', 'r': 'l'}
+let g:xremap = {'t': 'j', 'c': 'h', 's': 'k', 'r': 'l'}
+let g:oremap = {'t': 'j', 'c': 'h', 's': 'k', 'r': 'l'}
