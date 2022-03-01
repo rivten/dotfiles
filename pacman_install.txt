@@ -74,3 +74,4 @@ man-pages
 python-pip
 ttf-liberation
 ttf-iosevka
+ttf-fira-sans
