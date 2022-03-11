@@ -642,8 +642,6 @@ call s:tomap( 'aÉ',  'aW'    )    "idem pour [aW] et [aÉ]
 call s:tomap( 'ié',  'iw'    )    "idem pour [iw] et [ié]
 call s:tomap( 'iÉ',  'iW'    )    "idem pour [iW] et [iÉ]
 
-nnoremap <CR> :
-
 " remap for tpope's plugins
 let g:nremap = {'t': 'j', 'c': 'h', 's': 'k', 'r': 'l'}
 let g:xremap = {'t': 'j', 'c': 'h', 's': 'k', 'r': 'l'}
