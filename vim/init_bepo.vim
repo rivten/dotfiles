@@ -100,6 +100,9 @@ Plugin 'embear/vim-localvimrc'
 Plugin 'akinsho/toggleterm.nvim'
 Plugin 'iosmanthus/vim-nasm'
 Plugin 'evanleck/vim-svelte'
+Plugin 'mbbill/undotree'
+Plugin 'hashivim/vim-terraform'
+Plugin 'NoahTheDuke/vim-just'
 
 "Some cool black&white colorscheme, just in case
 "Plugin 'pbrisbin/vim-colors-off'
@@ -182,7 +185,7 @@ lmap ’ `
 
 " no more esc
 inoremap <Tab> <ESC>
-inoremap <S-Tab> <ESC>
+inoremap <S-Tab> <Tab>
 vnoremap <Tab> <ESC>
 
 " changing leader key to comma
@@ -268,10 +271,10 @@ if has('autocmd')
 
 	augroup END
 
-	augroup autoformat_group
-        autocmd BufWritePre *.py call PythonFormat()
-        autocmd BufWritePre *.c,*.h,*.cpp call ClangFormat()
-	augroup END
+	"augroup autoformat_group
+    "    autocmd BufWritePre *.py call PythonFormat()
+    "    autocmd BufWritePre *.c,*.h,*.cpp call ClangFormat()
+	"augroup END
 endif
 
 function! RunFormatter(executable, cmdline) abort
@@ -337,13 +340,13 @@ function! RunFormatter(executable, cmdline) abort
   syntax sync fromstart
 endfunction
 
-function! PythonFormat() abort
-    call RunFormatter('black', 'black -q -')
-endfunction
+"function! PythonFormat() abort
+"    call RunFormatter('black', 'black -q -')
+"endfunction
 
-function! ClangFormat() abort
-    call RunFormatter('clang-format', 'clang-format --style=WebKit -')
-endfunction
+"function! ClangFormat() abort
+"    call RunFormatter('clang-format', 'clang-format --style=WebKit -')
+"endfunction
 
 " no backup
 set nobackup
@@ -646,3 +649,5 @@ call s:tomap( 'iÉ',  'iW'    )    "idem pour [iW] et [iÉ]
 let g:nremap = {'t': 'j', 'c': 'h', 's': 'k', 'r': 'l'}
 let g:xremap = {'t': 'j', 'c': 'h', 's': 'k', 'r': 'l'}
 let g:oremap = {'t': 'j', 'c': 'h', 's': 'k', 'r': 'l'}
+
+execute "inoremap \u00A0 <Space>"
