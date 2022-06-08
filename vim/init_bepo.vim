@@ -236,13 +236,6 @@ set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
 
-function! LoadProjectSpecificVimScript()
-    if filereadable('project.vim')
-        " command internal to current project
-        source project.vim
-    endif
-endfunction
-
 " no more beeps
 set noerrorbells visualbell t_vb=
 if has('autocmd')
@@ -253,21 +246,8 @@ if has('autocmd')
         " Godot - for gdscript, do not set tab as spaces
         autocmd FileType gdscript3 setlocal noexpandtab
 
-        " NOTE(hugo): this works because VimEnter is called _AFTER_ loading
-        " this file, so we will rightly override default setup.
-        " TODO(hugo): how do we reset the setup when there is no project.vim
-        " file ? Maybe setup a project_default.vim ? Because at least we
-        " should remove the commands from the project.vim previously loaded...
-        autocmd DirChanged,VimEnter * call LoadProjectSpecificVimScript()
-
-        autocmd FileType vimwiki nmap <buffer> <CR> <Plug>VimwikiFollowLink
-
         autocmd BufWritePost *.vim source %
-
-        " Start NERDTree when Vim starts with a directory argument.
-        autocmd StdinReadPre * let s:std_in=1
-        autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') | execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
-
+        autocmd BufWritePost .lvimrc source %
 	augroup END
 
 	"augroup autoformat_group
@@ -339,13 +319,13 @@ function! RunFormatter(executable, cmdline) abort
   syntax sync fromstart
 endfunction
 
-"function! PythonFormat() abort
-"    call RunFormatter('black', 'black -q -')
-"endfunction
+function! PythonFormat() abort
+    call RunFormatter('black', 'black -q -')
+endfunction
 
-"function! ClangFormat() abort
-"    call RunFormatter('clang-format', 'clang-format --style=WebKit -')
-"endfunction
+function! ClangFormat() abort
+    call RunFormatter('clang-format', 'clang-format --style=WebKit -')
+endfunction
 
 " no backup
 set nobackup
@@ -398,28 +378,6 @@ set splitright
 " even vim recommends this for consistency
 noremap Y y$
 
-" fzf
-" What I do here is special. I don't want fzf in hugely big projects like I do
-" at work. For those, I use qgrep which caches the results in order to get
-" them very easily. For this first version, I will just list the folder that
-" uses qgrep. If I launch vim in those folder, I won't override <C-P> and let
-" qgrep have that mapping. Otherwise, I will override it with fzf.
-" TODO(hugo): parse the .qgrep folder for the cfg files of each mapped
-" project. Check if the path of those projects is the current working
-" directory. This avoids having a hardcoded list of folder.
-" TODO(hugo): actually put what is project-local to project.vim file
-let is_qgrep_project = 0
-if has("win32")
-    let qgrep_projects = ['d:\JD_CODE_STREAM\hugo_jd_work']
-else
-    let qgrep_projects = ['/home/hugo/dev/handmadehero/cpp/code']
-endif
-if index(qgrep_projects, getcwd()) != -1
-    "in theory, we should check if qgrep executable is here
-    " but executable("qgrep") does not seem to work...
-    let is_qgrep_project = 1
-endif
-
 let use_fzf = 0
 if executable("fzf")
     let g:qgrep_map = 0 "tell qgrep not to map commands
@@ -449,10 +407,6 @@ endif
 
 let $PYTHONUNBUFFERED=1
 
-"if executable("ag")
-"    set grepprg=ag\ --vimgrep\ --smart-case
-"endif
-
 if executable("rg")
     set grepprg=rg\ --vimgrep\ --smart-case
 endif
@@ -464,9 +418,6 @@ set fileignorecase
 if !has("nvim")
     set termguicolors
 endif
-
-" Exiting in the terminal
-tnoremap JK <C-\><C-n>
 
 let g:grammalecte_cli_py="/usr/bin/grammalecte-cli"
 let g:grammalecte_disable_rules = 'apostrophe_typographique apostrophe_typographique_après_t espaces_début_ligne espaces_milieu_ligne espaces_fin_de_ligne typo_points_suspension1 typo_tiret_incise nbsp_avant_double_ponctuation nbsp_avant_deux_points nbsp_après_chevrons_ouvrants nbsp_avant_chevrons_fermants1 unit_nbsp_avant_unités1 unit_nbsp_avant_unités2 unit_nbsp_avant_unités3 typo_guillemets_typographiques_doubles_fermants typo_guillemets_typographiques_doubles_ouvrants typo_tiret_incise2 esp_fin_ligne typo_tiret_début_ligne typo_guillemets_perdus'
@@ -517,7 +468,6 @@ if get(g:, 'colors_name', '') == 'srcery'
     hi! link ocamlConstructor SrceryBrightMagenta
 endif
 
-let g:vimwiki_key_mappings = { 'links': 0, }
 " prose setup
 " adapted from https://www.reddit.com/r/vim/comments/q03mqa/my_setup_for_prose/
 let w:ProseModeOn = 0
@@ -559,7 +509,7 @@ nnoremap <leader>f :NnnExplorer<CR>
 let g:gutentags_project_root = ['.gutctags']
 
 let g:localvimrc_ask = 0
-let g:localvimrc_sandbox = 1
+let g:localvimrc_sandbox = 0
 
 lua require("toggleterm").setup{direction = 'float'}
 
@@ -570,6 +520,11 @@ nnoremap <M-t> <C-w>j
 nnoremap <M-r> <C-w>l
 nnoremap <M-s> <C-w>k
 nnoremap <M-c> <C-w>h
+
+nnoremap <C-w>T <C-w>J
+nnoremap <C-w>R <C-w>L
+nnoremap <C-w>S <C-w>K
+nnoremap <C-w>C <C-w>H
 
 tnoremap <M-t> <C-\><C-n><C-w>j
 tnoremap <M-r> <C-\><C-n><C-w>l
