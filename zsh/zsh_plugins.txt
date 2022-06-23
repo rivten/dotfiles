@@ -1,0 +1,13 @@
+romkatv/powerlevel10k
+
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+
+ohmyzsh/ohmyzsh path:plugins/fancy-ctrl-z
+#ohmyzsh/ohmyzsh path:plugins/git
+
+#ohmyzsh/ohmyzsh path:plugins/aws
+
+olets/zsh-abbr
