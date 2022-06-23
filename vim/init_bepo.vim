@@ -38,78 +38,65 @@
 " You should create a qgrep folder in there and put everything that is inside
 " the qgrep vim/ directory.
 
-if has("win32")
-	set runtimepath^=~/vimfiles runtimepath+=~/vimfiles/after
-else
-	set runtimepath^=~/.vim runtimepath+=~/.vim/after
-endif
-let &packpath=&runtimepath
 filetype off
 set nocompatible
-if has("win32")
-	set runtimepath+=C:\Users\hviala\vimfiles\bundle\Vundle.vim
-	call vundle#begin('C:\Users\hviala\vimfiles\bundle')
-else
-	set runtimepath+=~/.vim/bundle/Vundle.vim
-	call vundle#begin('~/.vim/bundle')
-endif
-Plugin 'gmarik/Vundle.vim'
 
-Plugin 'tikhomirov/vim-glsl'
-Plugin 'morhetz/gruvbox'
-Plugin 'bkad/CamelCaseMotion'
-Plugin 'vim-scripts/argtextobj.vim'
-Plugin 'junegunn/goyo.vim'
-Plugin 'skywind3000/asyncrun.vim'
-Plugin 'ziglang/zig.vim'
-if has("win32")
-	Plugin 'nfvs/vim-perforce'
-endif
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'habamax/vim-godot'
-Plugin 'srcery-colors/srcery-vim'
-Plugin 'elixir-editors/vim-elixir'
-Plugin 'pangloss/vim-javascript'
-Plugin 'MaxMEllon/vim-jsx-pretty'
-Plugin 'mattn/emmet-vim'
-Plugin 'vhdirk/vim-cmake'
-Plugin 'dpelle/vim-Grammalecte'
-Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'neovimhaskell/haskell-vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'dstein64/vim-startuptime'
-Plugin 'kassio/neoterm'
-Plugin 'jsborjesson/vim-uppercase-sql'
-Plugin 'tpope/vim-fugitive'
-Plugin 'preservim/vimux'
-Plugin 'preservim/nerdtree'
-Plugin 'lambdalisue/suda.vim'
-Plugin 'nelsyeung/twig.vim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'reedes/vim-pencil'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'wsdjeg/vim-fetch'
-Plugin 'udalov/kotlin-vim'
-Plugin 'mcchrish/nnn.vim'
-Plugin 'pgdouyon/vim-yin-yang'
-Plugin 'fatih/vim-go'
-Plugin 'embear/vim-localvimrc'
-Plugin 'akinsho/toggleterm.nvim'
-Plugin 'iosmanthus/vim-nasm'
-Plugin 'evanleck/vim-svelte'
-Plugin 'mbbill/undotree'
-Plugin 'hashivim/vim-terraform'
-Plugin 'NoahTheDuke/vim-just'
+call plug#begin()
+Plug 'gmarik/Vundle.vim'
+
+Plug 'tikhomirov/vim-glsl'
+Plug 'morhetz/gruvbox'
+Plug 'bkad/CamelCaseMotion'
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'ziglang/zig.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'habamax/vim-godot'
+Plug 'srcery-colors/srcery-vim'
+Plug 'elixir-editors/vim-elixir'
+Plug 'pangloss/vim-javascript'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'mattn/emmet-vim'
+Plug 'vhdirk/vim-cmake'
+Plug 'dpelle/vim-Grammalecte'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'leafgarland/typescript-vim'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'rust-lang/rust.vim'
+Plug 'kassio/neoterm'
+Plug 'jsborjesson/vim-uppercase-sql'
+Plug 'tpope/vim-fugitive'
+Plug 'lambdalisue/suda.vim'
+Plug 'nelsyeung/twig.vim'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'reedes/vim-pencil'
+Plug 'StanAngeloff/php.vim'
+Plug 'wsdjeg/vim-fetch'
+Plug 'udalov/kotlin-vim'
+Plug 'mcchrish/nnn.vim'
+Plug 'pgdouyon/vim-yin-yang'
+Plug 'fatih/vim-go'
+Plug 'embear/vim-localvimrc'
+Plug 'akinsho/toggleterm.nvim'
+Plug 'iosmanthus/vim-nasm'
+Plug 'evanleck/vim-svelte'
+Plug 'mbbill/undotree'
+Plug 'hashivim/vim-terraform'
+Plug 'NoahTheDuke/vim-just'
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-SyntaxRange'
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'jansedivy/jai.vim'
 
 "Some cool black&white colorscheme, just in case
-"Plugin 'pbrisbin/vim-colors-off'
-"Plugin 'huyvohcmc/atlas.vim'
-"Plugin 'andreasvc/vim-256noir'
-"Plugin 'ewilazarus/preto'
+"Plug 'pbrisbin/vim-colors-off'
+"Plug 'huyvohcmc/atlas.vim'
+"Plug 'andreasvc/vim-256noir'
+"Plug 'ewilazarus/preto'
 
-call vundle#end()
+call plug#end()
 " enable filetype plugins
 filetype plugin on
 filetype indent on
