@@ -453,6 +453,10 @@ if get(g:, 'colors_name', '') == 'srcery'
     hi! link ocamlModPreRHS SrceryWhite
     hi! link ocamlAnyVar SrceryWhite
     hi! link ocamlConstructor SrceryBrightMagenta
+
+    hi! link tomlTable SrceryBrightBlue
+    hi! link tomlTableArray SrceryBrightBlue
+
 endif
 
 " prose setup

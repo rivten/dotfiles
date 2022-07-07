@@ -4,9 +4,10 @@ window:
 
 font:
     normal:
-      family: Liberation Mono
+      #family: Liberation Mono
+      family: Fira Mono
       #family: DejaVu Sans Mono
-    size: 14.0
+    size: 11.0
 
 # from https://github.com/srcery-colors/srcery-terminal/blob/master/alacritty/srcery_alacritty.yml
 
