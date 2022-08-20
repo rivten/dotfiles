@@ -42,8 +42,6 @@ filetype off
 set nocompatible
 
 call plug#begin()
-Plug 'gmarik/Vundle.vim'
-
 Plug 'tikhomirov/vim-glsl'
 Plug 'morhetz/gruvbox'
 Plug 'bkad/CamelCaseMotion'
@@ -88,7 +86,16 @@ Plug 'NoahTheDuke/vim-just'
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-SyntaxRange'
 Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'jansedivy/jai.vim'
+Plug 'rluba/jai.vim'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'preservim/vim-colors-pencil'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'dstein64/vim-startuptime'
+Plug 'Tetralux/odin.vim'
+Plug 'zah/nim.vim'
 
 "Some cool black&white colorscheme, just in case
 "Plug 'pbrisbin/vim-colors-off'
@@ -161,24 +168,27 @@ nnoremap <C-T> <C-]>
 nnoremap <C-]> <C-T>
 nnoremap g<C-T> g<C-]>
 
-set langmap=à@,è`,é~,ç^,’`,ù%
-lmap à @
-lmap è `
-lmap é ~
-lmap ç ^
-lmap ù %
-lmap ’ `
+"set langmap=à@,è`,é~,ç^,’`,ù%
+"lmap à @
+"lmap è `
+"lmap é ~
+"lmap ç ^
+"lmap ù %
+"lmap ’ `
 
 " no more esc
 inoremap <Tab> <ESC>
 inoremap <S-Tab> <Tab>
 vnoremap <Tab> <ESC>
+inoremap þß <ESC> 
 
 " changing leader key to comma
 let mapleader=","
 " because having my leader to comma, it is not possible to do f,
 " so I remap it to f§ which is close on french keyboard
-nnoremap § ,
+nnoremap € ;
+nnoremap ’ ,
+
 
 " setting a badass font
 if !has("nvim")
@@ -440,12 +450,12 @@ if get(g:, 'colors_name', '') == 'srcery'
 
     hi! link haskellKeyword SrceryBrightOrange
 
-    hi! link VimwikiHeader1 SrceryRed
-    hi! link VimwikiHeader2 SrceryBrightOrange
-    hi! link VimwikiHeader3 SrceryBrightBlue
-    hi! link VimwikiLink SrceryBrightGreen
-    hi! link VimwikiList SrceryBrightWhite
-    hi! link VimwikiCode SrceryBrightBlue
+    "hi! link VimwikiHeader1 SrceryRed
+    "hi! link VimwikiHeader2 SrceryBrightOrange
+    "hi! link VimwikiHeader3 SrceryBrightBlue
+    "hi! link VimwikiLink SrceryBrightGreen
+    "hi! link VimwikiList SrceryBrightWhite
+    "hi! link VimwikiCode SrceryBrightBlue
 
     hi! link ocamlKeyChar SrceryWhite
     hi! link ocamlKeyword SrceryBrightOrange
@@ -457,7 +467,21 @@ if get(g:, 'colors_name', '') == 'srcery'
     hi! link tomlTable SrceryBrightBlue
     hi! link tomlTableArray SrceryBrightBlue
 
+    "hi! markdownItalic cterm=italic
 endif
+
+"let g:pencil#conceallevel = 2
+"augroup pencil
+"  autocmd!
+"  autocmd FileType markdown,markdown.pandoc,text call pencil#init({'wrap': 'soft'})
+"augroup END
+
+function ResetColorscheme()
+    set bg=dark
+    colorscheme srcery
+    hi! link Title SrceryBrightBlueBold
+    syntax enable
+endfunction
 
 " prose setup
 " adapted from https://www.reddit.com/r/vim/comments/q03mqa/my_setup_for_prose/
@@ -465,16 +489,17 @@ let w:ProseModeOn = 0
 
 function EnableProseMode()
     "setlocal spell spelllang=fr
+    "colorscheme pencil
     Goyo 70
     SoftPencil
-    echo "Prose Mode On"
 endfu
 
 function DisableProseMode()
     Goyo!
-    NoPencil
+    if &filetype ==# 'markdown' && &filetype ==# 'markdown.pandoc'
+        NoPencil
+    endif
     "setlocal nospell
-    echo "Prose Mode Off"
 endfu
 
 function ToggleProseMode()
@@ -485,6 +510,11 @@ function ToggleProseMode()
         call DisableProseMode()
     endif
 endfu
+
+augroup writing
+    autocmd!
+    autocmd! User GoyoLeave nested call ResetColorscheme()
+augroup END
 
 command Prose call EnableProseMode()
 command UnProse call DisableProseMode()
@@ -504,8 +534,8 @@ let g:localvimrc_sandbox = 0
 
 lua require("toggleterm").setup{direction = 'float'}
 
-nnoremap þß :ToggleTerm<CR>
-tnoremap þß <C-\><C-n>:ToggleTerm<CR>
+"nnoremap þß :ToggleTerm<CR>
+"tnoremap þß <C-\><C-n>:ToggleTerm<CR>
 
 nnoremap <M-t> <C-w>j
 nnoremap <M-r> <C-w>l
@@ -527,7 +557,7 @@ nnoremap <C-Q> :Tags<CR>
 let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
-
+let g:fzf_layout = { 'down': '40%' }
 
 " taken from vim-bepo but largely adapted
 
@@ -596,3 +626,24 @@ let g:xremap = {'t': 'j', 'c': 'h', 's': 'k', 'r': 'l'}
 let g:oremap = {'t': 'j', 'c': 'h', 's': 'k', 'r': 'l'}
 
 execute "inoremap \u00A0 <Space>"
+
+set spelllang=en,fr
+set spellcapcheck=""
+inoremap <C-l> <C-g>u<Esc>[s1z=`]a<C-g>u
+"augroup pandoc_syntax
+"    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc | setlocal spell 
+"augroup END
+
+let g:UltiSnipsExpandTrigger="<c-t>"
+let g:UltiSnipsJumpForwardTrigger="<c-t>"
+let g:UltiSnipsJumpBackwardTrigger="<c-s>"
+
+hi! link Title SrceryBrightBlueBold
+let g:pandoc#syntax#conceal#cchar_overrides = {'quote_s': '«', 'quote_e': '»'}
+let g:pandoc#syntax#conceal#blacklist = ['strikeout', 'subscript', 'superscript']
+let g:pandoc#syntax#style#underline_special = 0
+let g:pandoc#syntax#codeblocks#embeds#langs = ['bash', 'python', 'yaml', 'sql', 'toml']
+let g:pandoc#modules#disabled = ["folding", "keyboard", "bibliographies", "completion"]
+
+
+let g:localvimrc_name = [".lvimrc", ".lvimrc.lua"]

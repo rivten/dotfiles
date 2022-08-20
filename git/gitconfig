@@ -17,6 +17,8 @@
     tool = nvim
 [push]
     default = tracking
+[pull]
+    rebase = true
 [github]
     user = rivten
 [receive]
@@ -88,7 +90,7 @@
   cm = !git checkout $( git default-branch )
   cd = checkout development
   switch-branch = "!f() { [ $# -gt 0 ] && exec git switch "$@"; branch=$( git branches 2>/dev/null | fzf +s --no-multi --prompt 'Branches> ' ) && git switch "$branch"; }; f"
-  sb = switch-branch
+  sb = "!git switch $(git for-each-ref --format='%(refname:short)' refs/heads/ | fzf --reverse --height=10)"
   branches = "!git -c color.ui=always branch -a | grep -Ev '(/HEAD|/(main|master))' | sed -r -e 's,^[\\* ]*,,' -e 's,remotes/[^/]+/,,'"
   default-branch = !git symbolic-ref --short refs/remotes/$(git branch -r | grep "$(git branch --show-current)" | choose -f "/" 0 | xargs)/HEAD
 
@@ -155,3 +157,5 @@
   # try to run a GUI, or tig on terminals
   g = "!f() { if [ \"`uname -s`\" = 'Darwin' ]; then (gitx $@ &>/dev/null &); elif [ -n \"$DISPLAY\" ]; then (gitg $@ &>/dev/null &); else tig $@; fi; }; f"
   s = switch
+
+  sync = !git up && git pu
