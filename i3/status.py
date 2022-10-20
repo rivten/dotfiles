@@ -114,6 +114,7 @@ status.register(
     error_color=yellow,
 )
 
+
 # status.register("online",
 #     format_online="✓",
 #     format_offline="✗",

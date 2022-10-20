@@ -83,7 +83,7 @@ export EDITOR="$VISUAL"
 export PAGER="bat --style=plain"
 export MANPAGER="sh -c 'col -b | bat -l man -p'"
 
-alias t='python ~/dev/t/t.py --task-dir ~/tasks --list tasks.txt'
+#alias t='python ~/dev/t/t.py --task-dir ~/tasks --list tasks.txt'
 alias l='exa -lhai'
 alias v='nvim'
 alias q='exit'
@@ -296,17 +296,19 @@ fi
 ZSH_HIGHLIGHT_STYLES[arg0]='fg=10'
 
 # opam configuration
-test -r /home/hugo/.opam/opam-init/init.zsh && . /home/hugo/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-#compdef gdc
+#test -r /home/hugo/.opam/opam-init/init.zsh && . /home/hugo/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
 
 _gdc_completion() {
   eval $(env _TYPER_COMPLETE_ARGS="${words[1,$CURRENT]}" _GDC_COMPLETE=complete_zsh gdc)
 }
-
 compdef _gdc_completion gdc
 
 export npm_config_prefix="$HOME/.local"
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
 
 export AWS_DEFAULT_REGION=eu-west-1
+
+alias tmp="cd /tmp"
+alias open="xdg-open"
+
+export ZK_NOTEBOOK_DIR="/home/hugo/zk"

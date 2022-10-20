@@ -1,9 +1,0 @@
-#!/bin/bash
-
-set -eou pipefail
-set -x
-
-repositoryName="gdc/website"
-
-imageDigest=$(aws ecr describe-images --profile infra --region eu-west-1 --repository-name gdc/website | jq -r '.imageDetails | map(select(any(try .imageTags[] ; . == "preprod.latest"))) | .[0].imageDigest')
-echo $imageDigest

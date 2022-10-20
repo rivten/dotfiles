@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -eou pipefail
-
-ff_tool_directory=${1:-"/infra/tools/featureflag/"}
-env=${2:-"prod"}
-
-(cd $ff_tool_directory && poetry run python main.py --env $env --dump | jq --raw-output '.[] | select(.default_value==true) | .name' | grep -Po 'create-classified__use-new-funnel__\K.*$')
