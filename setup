@@ -14,6 +14,7 @@ cwd="$(git rev-parse --show-toplevel)"
 [ ! -d "~/.config/redshift/hooks" ] && mkdir -p ~/.config/redshift/hooks
 [ ! -d "~/.config/picom" ] && mkdir -p ~/.config/picom
 [ ! -d "~/.config/bat/themes" ] && mkdir -p ~/.config/bat/themes
+[ ! -d "~/zk/.zk/templates" ] && mkdir -p ~/zk/.zk/templates
 
 ln -sf $cwd/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 ln -sf $cwd/ctags/default.ctags ~/.config/ctags/default.ctags
@@ -37,4 +38,6 @@ ln -sf $cwd/redshift/hook ~/.config/redshift/hooks/hook
 ln -sf $cwd/picom/picom.conf ~/.config/picom/picom.conf
 ln -sf $cwd/less/lesskey ~/.lesskey
 ln -sf $cwd/bat/srcery.tmTheme ~/.config/bat/themes/srcery.tmTheme
+ln -sf $cwd/zk/config.toml ~/zk/.zk/config.toml
+ln -sf $cwd/zk/templates/default.md ~/zk/.zk/templates/default.md
 bat cache --build
