@@ -83,7 +83,10 @@ export EDITOR="$VISUAL"
 export PAGER="bat --style=plain"
 export MANPAGER="sh -c 'col -b | bat -l man -p'"
 
-#alias t='python ~/dev/t/t.py --task-dir ~/tasks --list tasks.txt'
+t () {
+    [[ -d .tasks ]] && python ~/dev/t/t.py --task-dir .tasks --list tasks.txt "$@" || python ~/dev/t/t.py --task-dir ~/tasks --list tasks.txt "$@"
+}
+
 alias l='exa -lhai'
 alias v='nvim'
 alias q='exit'
