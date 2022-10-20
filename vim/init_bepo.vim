@@ -97,6 +97,7 @@ Plug 'dstein64/vim-startuptime'
 Plug 'Tetralux/odin.vim'
 Plug 'zah/nim.vim'
 Plug 'mickael-menu/zk-nvim'
+Plug 'tpope/vim-dadbod'
 
 "Some cool black&white colorscheme, just in case
 "Plug 'pbrisbin/vim-colors-off'
