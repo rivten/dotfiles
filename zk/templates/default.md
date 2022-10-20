@@ -1,5 +1,6 @@
 ---
-keywords: []
+tags: []
+created: {{date now}}
 ---
 
 # {{title}}
