@@ -84,6 +84,7 @@ export PAGER="bat --style=plain"
 export MANPAGER="sh -c 'col -b | bat -l man -p'"
 
 t () {
+    [[ -d ~/dev/t ]] || git clone https://github.com/sjl/t ~/dev/t
     [[ -d .tasks ]] && python ~/dev/t/t.py --task-dir .tasks --list tasks.txt "$@" || python ~/dev/t/t.py --task-dir ~/tasks --list tasks.txt "$@"
 }
 
