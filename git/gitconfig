@@ -19,6 +19,8 @@
     default = tracking
 [pull]
     rebase = true
+[rebase]
+    autoStash = true
 [github]
     user = rivten
 [receive]
@@ -159,3 +161,5 @@
   s = switch
 
   sync = !git up && git pu
+[init]
+	defaultBranch = main

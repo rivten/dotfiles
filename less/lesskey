@@ -3,3 +3,4 @@ t forw-line
 j forw-line
 s back-line
 k back-line
+w toggle-option o

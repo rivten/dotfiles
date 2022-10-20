@@ -90,12 +90,13 @@ Plug 'rluba/jai.vim'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'preservim/vim-colors-pencil'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'dstein64/vim-startuptime'
 Plug 'Tetralux/odin.vim'
 Plug 'zah/nim.vim'
+Plug 'mickael-menu/zk-nvim'
 
 "Some cool black&white colorscheme, just in case
 "Plug 'pbrisbin/vim-colors-off'
@@ -647,3 +648,5 @@ let g:pandoc#modules#disabled = ["folding", "keyboard", "bibliographies", "compl
 
 
 let g:localvimrc_name = [".lvimrc", ".lvimrc.lua"]
+
+lua require("zk").setup({picker="fzf", lsp=nil})
