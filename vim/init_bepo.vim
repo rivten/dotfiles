@@ -247,6 +247,7 @@ if has('autocmd')
 
         autocmd BufWritePost *.vim source %
         autocmd BufWritePost .lvimrc source %
+        autocmd BufWritePost .lvimrc.lua luafile %
 	augroup END
 
 	"augroup autoformat_group
