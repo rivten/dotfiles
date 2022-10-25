@@ -27,6 +27,7 @@ elixir
 exa
 fd
 firefox
+flameshot
 fossil
 fzf
 gcc
