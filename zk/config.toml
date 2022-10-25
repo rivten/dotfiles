@@ -165,8 +165,8 @@ dead-link = "error"
 #     * you can pipe commands together with the usual | character
 #
 [alias]
-push = "zip zk_rivten.zip $(zk list --quiet --format path ${@:2}) && rclone copy zk_rivten.zip edrive: && rm zk_rivten.zip"
-pull = "rclone copy edrive:zk_rivten.zip . && unzip -u zk_rivten.zip && rm zk_rivten.zip && zk index"
+push = "tar czf zk_rivten.tar.gz $(zk list --quiet --format path ${@:2}) && rclone copy zk_rivten.tar.gz edrive: && rm zk_rivten.tar.gz"
+pull = "rclone copy edrive:zk_rivten.tar.gz . && tar xf zk_rivten.tar.gz --keep-newer-files && rm zk_rivten.tar.gz && zk index"
 e = "zk edit -i $@"
 l = "zk list $@"
 n = "zk new $@"
