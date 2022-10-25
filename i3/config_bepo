@@ -268,7 +268,7 @@ bindsym $mod+j mode "$mode_system"
 bindsym $mod+BackSpace move scratchpad
 bindsym $mod+equal scratchpad show
 
-bindsym --release $mod+Shift+a exec --no-startup-id ~/.local/bin/screenshooter
+bindsym --release $mod+Shift+a exec --no-startup-id flameshot gui
 
 # Toggle notifications
 bindsym $mod+apostrophe exec --no-startup-id dunstctl set-paused toggle
