@@ -83,9 +83,6 @@ Plug 'evanleck/vim-svelte'
 Plug 'mbbill/undotree'
 Plug 'hashivim/vim-terraform'
 Plug 'NoahTheDuke/vim-just'
-Plug 'inkarkat/vim-ingo-library'
-Plug 'inkarkat/vim-SyntaxRange'
-Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'rluba/jai.vim'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vim-pandoc/vim-pandoc'
@@ -98,6 +95,11 @@ Plug 'Tetralux/odin.vim'
 Plug 'zah/nim.vim'
 Plug 'mickael-menu/zk-nvim'
 Plug 'tpope/vim-dadbod'
+Plug 'tpope/vim-fireplace'
+Plug 'chrisbra/csv.vim'
+Plug 'bhurlow/vim-parinfer'
+Plug 'ocaml/vim-ocaml'
+Plug 'jpalardy/vim-slime'
 
 "Some cool black&white colorscheme, just in case
 "Plug 'pbrisbin/vim-colors-off'
@@ -473,6 +475,11 @@ if get(g:, 'colors_name', '') == 'srcery'
     "hi! markdownItalic cterm=italic
 endif
 
+augroup markdown_count
+  autocmd!
+  autocmd FileType markdown,markdown.pandoc,text set makeprg=pandoc\ -L\ /home/hugo/.local/share/writing_scripts/wordcount.lua\ %
+augroup END
+
 "let g:pencil#conceallevel = 2
 "augroup pencil
 "  autocmd!
@@ -652,3 +659,5 @@ let g:pandoc#modules#disabled = ["folding", "keyboard", "bibliographies", "compl
 let g:localvimrc_name = [".lvimrc", ".lvimrc.lua"]
 
 lua require("zk").setup({picker="fzf", lsp=nil})
+
+let g:slime_target = "x11"

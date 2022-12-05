@@ -308,3 +308,8 @@ alias tmp="cd /tmp"
 alias open="xdg-open"
 
 export ZK_NOTEBOOK_DIR="/home/hugo/zk"
+
+export AWS_CLI_AUTO_PROMPT=on-partial
+
+# opam configuration
+[[ ! -r /home/hugo/.opam/opam-init/init.zsh ]] || source /home/hugo/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

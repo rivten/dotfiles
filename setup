@@ -40,4 +40,6 @@ ln -sf $cwd/less/lesskey ~/.lesskey
 ln -sf $cwd/bat/srcery.tmTheme ~/.config/bat/themes/srcery.tmTheme
 ln -sf $cwd/zk/config.toml ~/zk/.zk/config.toml
 ln -sf $cwd/zk/templates/default.md ~/zk/.zk/templates/default.md
+ln -sf $cwd/dcss/config.rc ~/.crawlrc
+ln -sf $cwd/gdb/gdbinit ~/.gdbinit
 bat cache --build
