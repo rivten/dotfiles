@@ -1,0 +1,59 @@
+# always_show_zot = true
+
+default_manual_training = true
+default_show_all_skills = true
+autofight_stop = 50
+auto_butcher = true
+auto_eat_chunks = true
+show_more = false
+
+autofight_throw = false
+autofight_throw_nomove = false
+
+show_travel_trail = true
+travel_delay = -1
+rest_delay = -1
+auto_sacrifice = true
+sacrifice_before_explore = true
+
+show_game_time = true
+
+warn_hatches = true
+jewellery_prompt = false
+equip_unequip = true
+allow_self_target = false
+confirm_butcher = never
+easy_eat_gourmand = true
+sort_menus = true : equipped, identified, basename, qualname, charged
+hp_warning = 50
+
+auto_hide_spells = true
+wall_jump_move = false
+
+# BÉPO keybindings
+
+bindkey = [c] CMD_MOVE_LEFT
+bindkey = [r] CMD_MOVE_RIGHT
+bindkey = [s] CMD_MOVE_UP
+bindkey = [t] CMD_MOVE_DOWN
+
+bindkey = [h] CMD_BUTCHER
+bindkey = [l] CMD_READ
+bindkey = [j] CMD_SHOUT
+bindkey = [k] CMD_WAIT
+
+bindkey = [q] CMD_MOVE_DOWN_LEFT
+bindkey = [g] CMD_MOVE_DOWN_RIGHT
+bindkey = [v] CMD_MOVE_UP_LEFT
+bindkey = [d] CMD_MOVE_UP_RIGHT
+
+bindkey = [b] CMD_QUAFF
+bindkey = [n] CMD_GRAB
+bindkey = [y] CMD_PRIMARY_ATTACK
+bindkey = [u] CMD_DROP
+
+bindkey = [c] CMD_MAP_MOVE_LEFT
+bindkey = [r] CMD_MAP_MOVE_RIGHT
+bindkey = [s] CMD_MAP_MOVE_UP
+bindkey = [t] CMD_MAP_MOVE_DOWN
+
