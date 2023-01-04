@@ -15,6 +15,7 @@ cwd="$(git rev-parse --show-toplevel)"
 [ ! -d "~/.config/picom" ] && mkdir -p ~/.config/picom
 [ ! -d "~/.config/bat/themes" ] && mkdir -p ~/.config/bat/themes
 [ ! -d "~/zk/.zk/templates" ] && mkdir -p ~/zk/.zk/templates
+[ ! -d "~/.config/autorandr" ] && mkdir -p ~/.config/autorandr
 
 ln -sf $cwd/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
 ln -sf $cwd/ctags/default.ctags ~/.config/ctags/default.ctags
@@ -42,4 +43,5 @@ ln -sf $cwd/zk/config.toml ~/zk/.zk/config.toml
 ln -sf $cwd/zk/templates/default.md ~/zk/.zk/templates/default.md
 ln -sf $cwd/dcss/config.rc ~/.crawlrc
 ln -sf $cwd/gdb/gdbinit ~/.gdbinit
+ln -sf $cwd/autorandr/settings.ini ~/.config/autorandr/settings.ini
 bat cache --build

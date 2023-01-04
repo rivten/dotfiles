@@ -1,6 +1,6 @@
 ---
 tags: []
-created: {{date now}}
+created: {{format-date now}}
 ---
 
 # {{title}}
