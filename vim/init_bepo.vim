@@ -100,6 +100,9 @@ Plug 'chrisbra/csv.vim'
 Plug 'bhurlow/vim-parinfer'
 Plug 'ocaml/vim-ocaml'
 Plug 'jpalardy/vim-slime'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ElmCast/elm-vim'
 
 "Some cool black&white colorscheme, just in case
 "Plug 'pbrisbin/vim-colors-off'
