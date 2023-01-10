@@ -36,6 +36,8 @@ exec --no-startup-id xrandr --output eDP-1 --mode 1920x1200
 
 exec --no-startup-id picom -b
 
+exec --no-startup-id clipster -d
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -276,6 +278,8 @@ bindsym --release $mod+Shift+a exec --no-startup-id flameshot gui
 bindsym $mod+apostrophe exec --no-startup-id dunstctl set-paused toggle
 
 bindsym $mod+b exec --no-startup-id rofi -show drun -run-shell-command 'alacritty -e zsh -ic "{cmd} && read"'
+
+bindsym $mod+g exec --no-startup-id roficlip
 
 
 for_window [instance="i3float"] floating enable
