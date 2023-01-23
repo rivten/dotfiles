@@ -118,7 +118,7 @@ n ()
     # stty lwrap undef
     # stty lnext undef
 
-    "$HOME/.local/bin/nnn" -edH "$@"
+    "/usr/bin/nnn" -edH "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
             . "$NNN_TMPFILE"
