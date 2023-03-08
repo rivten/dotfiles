@@ -96,13 +96,25 @@ Plug 'zah/nim.vim'
 Plug 'mickael-menu/zk-nvim'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-fireplace'
-Plug 'chrisbra/csv.vim'
 Plug 'bhurlow/vim-parinfer'
 Plug 'ocaml/vim-ocaml'
 Plug 'jpalardy/vim-slime'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ElmCast/elm-vim'
+Plug 'betaveros/noulith', {'as': 'noulith', 'rtp': 'vim'}
+
+" LSP SETUP
+Plug 'neovim/nvim-lspconfig'
+Plug 'simrat39/rust-tools.nvim'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+Plug 'L3MON4D3/LuaSnip'
+Plug 'rafamadriz/friendly-snippets'
 
 "Some cool black&white colorscheme, just in case
 "Plug 'pbrisbin/vim-colors-off'
@@ -183,6 +195,8 @@ nnoremap g<C-T> g<C-]>
 "lmap ù %
 "lmap ’ `
 
+let mapleader=","
+
 " no more esc
 inoremap <Tab> <ESC>
 inoremap <S-Tab> <Tab>
@@ -190,12 +204,10 @@ vnoremap <Tab> <ESC>
 inoremap þß <ESC> 
 
 " changing leader key to comma
-let mapleader=","
 " because having my leader to comma, it is not possible to do f,
 " so I remap it to f§ which is close on french keyboard
 nnoremap € ;
 nnoremap ’ ,
-
 
 " setting a badass font
 if !has("nvim")
@@ -658,9 +670,10 @@ let g:pandoc#syntax#style#underline_special = 0
 let g:pandoc#syntax#codeblocks#embeds#langs = ['bash', 'python', 'yaml', 'sql', 'toml']
 let g:pandoc#modules#disabled = ["folding", "keyboard", "bibliographies", "completion"]
 
-
 let g:localvimrc_name = [".lvimrc", ".lvimrc.lua"]
 
 lua require("zk").setup({picker="fzf", lsp=nil})
 
 let g:slime_target = "x11"
+
+luafile ~/.config/nvim/init_lua.lua

@@ -24,6 +24,7 @@ ln -sf $cwd/git/gitconfig ~/.gitconfig
 ln -sf $cwd/git/gitignore ~/.gitignore
 ln -sf $cwd/tmux/tmux.conf ~/.tmux.conf
 ln -sf $cwd/vim/init_bepo.vim ~/.config/nvim/init.vim
+ln -sf $cwd/vim/init_lua.lua ~/.config/nvim/init_lua.lua
 ln -sf $cwd/vim/ginit.vim ~/.config/nvim/ginit.vim
 ln -sf $cwd/zsh/zshrc ~/.zshrc
 ln -sf $cwd/zsh/p10k.zsh ~/.p10k.zsh
