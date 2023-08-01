@@ -105,6 +105,11 @@ Plug 'ElmCast/elm-vim'
 Plug 'betaveros/noulith', {'as': 'noulith', 'rtp': 'vim'}
 Plug 'bfrg/vim-jq'
 Plug 'wlangstroth/vim-racket'
+Plug 'mlochbaum/BQN', {'rtp': 'editors/vim'}
+Plug 'gagbo/vim-gnuplot'
+Plug 'timmyjose-projects/lox.vim'
+Plug 'ledger/vim-ledger'
+Plug 'kurkale6ka/vim-chess'
 
 "Some cool black&white colorscheme, just in case
 "Plug 'pbrisbin/vim-colors-off'
@@ -667,3 +672,5 @@ lua require("zk").setup({picker="fzf", lsp=nil})
 let g:slime_target = "x11"
 
 luafile ~/.config/nvim/init_lua.lua
+
+let g:bqn_prefix_key = 'à'
