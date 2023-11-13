@@ -45,7 +45,6 @@ call plug#begin()
 Plug 'tikhomirov/vim-glsl'
 Plug 'morhetz/gruvbox'
 Plug 'bkad/CamelCaseMotion'
-Plug 'vim-scripts/argtextobj.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'ziglang/zig.vim'
@@ -57,7 +56,6 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
-Plug 'vhdirk/vim-cmake'
 Plug 'dpelle/vim-Grammalecte'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'leafgarland/typescript-vim'
@@ -67,11 +65,9 @@ Plug 'kassio/neoterm'
 Plug 'jsborjesson/vim-uppercase-sql'
 Plug 'tpope/vim-fugitive'
 Plug 'lambdalisue/suda.vim'
-Plug 'nelsyeung/twig.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'reedes/vim-pencil'
 Plug 'StanAngeloff/php.vim'
-Plug 'wsdjeg/vim-fetch'
 Plug 'udalov/kotlin-vim'
 Plug 'mcchrish/nnn.vim'
 Plug 'pgdouyon/vim-yin-yang'
@@ -81,16 +77,10 @@ Plug 'akinsho/toggleterm.nvim'
 Plug 'iosmanthus/vim-nasm'
 Plug 'evanleck/vim-svelte'
 Plug 'mbbill/undotree'
-Plug 'hashivim/vim-terraform'
 Plug 'NoahTheDuke/vim-just'
 Plug 'rluba/jai.vim'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-pandoc/vim-pandoc'
 Plug 'preservim/vim-colors-pencil'
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'dstein64/vim-startuptime'
 Plug 'Tetralux/odin.vim'
 Plug 'zah/nim.vim'
 Plug 'mickael-menu/zk-nvim'
@@ -102,14 +92,15 @@ Plug 'jpalardy/vim-slime'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ElmCast/elm-vim'
-Plug 'betaveros/noulith', {'as': 'noulith', 'rtp': 'vim'}
 Plug 'bfrg/vim-jq'
 Plug 'wlangstroth/vim-racket'
 Plug 'mlochbaum/BQN', {'rtp': 'editors/vim'}
 Plug 'gagbo/vim-gnuplot'
-Plug 'timmyjose-projects/lox.vim'
 Plug 'ledger/vim-ledger'
-Plug 'kurkale6ka/vim-chess'
+Plug 'Nicoloren/vim-french-thesaurus'
+Plug 'vim-scripts/pgn.vim'
+Plug 'cdelledonne/vim-cmake'
+Plug 'glensc/vim-syntax-lighttpd'
 
 "Some cool black&white colorscheme, just in case
 "Plug 'pbrisbin/vim-colors-off'
@@ -260,6 +251,8 @@ if has('autocmd')
         autocmd BufWritePost *.vim source %
         autocmd BufWritePost .lvimrc source %
         autocmd BufWritePost .lvimrc.lua luafile %
+
+        autocmd BufReadPost *.pgn set syntax=pgn
 	augroup END
 
 	"augroup autoformat_group
@@ -481,22 +474,9 @@ if get(g:, 'colors_name', '') == 'srcery'
 
     hi! link tomlTable SrceryBrightBlue
     hi! link tomlTableArray SrceryBrightBlue
-
-    "hi! markdownItalic cterm=italic
 endif
 
-augroup markdown_count
-  autocmd!
-  autocmd FileType markdown,markdown.pandoc,text set makeprg=pandoc\ -L\ /home/hugo/.local/share/writing_scripts/wordcount.lua\ %
-augroup END
-
-"let g:pencil#conceallevel = 2
-"augroup pencil
-"  autocmd!
-"  autocmd FileType markdown,markdown.pandoc,text call pencil#init({'wrap': 'soft'})
-"augroup END
-
-function ResetColorscheme()
+function! ResetColorscheme()
     set bg=dark
     colorscheme srcery
     hi! link Title SrceryBrightBlueBold
@@ -507,22 +487,22 @@ endfunction
 " adapted from https://www.reddit.com/r/vim/comments/q03mqa/my_setup_for_prose/
 let w:ProseModeOn = 0
 
-function EnableProseMode()
+function! EnableProseMode()
     "setlocal spell spelllang=fr
     "colorscheme pencil
     Goyo 70
     SoftPencil
 endfu
 
-function DisableProseMode()
+function! DisableProseMode()
     Goyo!
-    if &filetype ==# 'markdown' && &filetype ==# 'markdown.pandoc'
+    if &filetype ==# 'markdown'
         NoPencil
     endif
     "setlocal nospell
 endfu
 
-function ToggleProseMode()
+function! ToggleProseMode()
     if w:ProseModeOn == 0
         call EnableProseMode()
         let w:ProseModeOn = 1
@@ -536,9 +516,9 @@ augroup writing
     autocmd! User GoyoLeave nested call ResetColorscheme()
 augroup END
 
-command Prose call EnableProseMode()
-command UnProse call DisableProseMode()
-command ToggleProse call ToggleProseMode()
+command! Prose call EnableProseMode()
+command! UnProse call DisableProseMode()
+command! ToggleProse call ToggleProseMode()
 
 let g:rustfmt_autosave = 1
 let g:cargo_makeprg_params = 'build'
@@ -650,20 +630,12 @@ execute "inoremap \u00A0 <Space>"
 set spelllang=en,fr
 set spellcapcheck=""
 inoremap <C-l> <C-g>u<Esc>[s1z=`]a<C-g>u
-"augroup pandoc_syntax
-"    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc | setlocal spell 
-"augroup END
 
 let g:UltiSnipsExpandTrigger="<c-t>"
 let g:UltiSnipsJumpForwardTrigger="<c-t>"
 let g:UltiSnipsJumpBackwardTrigger="<c-s>"
 
 hi! link Title SrceryBrightBlueBold
-let g:pandoc#syntax#conceal#cchar_overrides = {'quote_s': '«', 'quote_e': '»'}
-let g:pandoc#syntax#conceal#blacklist = ['strikeout', 'subscript', 'superscript']
-let g:pandoc#syntax#style#underline_special = 0
-let g:pandoc#syntax#codeblocks#embeds#langs = ['bash', 'python', 'yaml', 'sql', 'toml']
-let g:pandoc#modules#disabled = ["folding", "keyboard", "bibliographies", "completion"]
 
 let g:localvimrc_name = [".lvimrc", ".lvimrc.lua"]
 
@@ -674,3 +646,7 @@ let g:slime_target = "x11"
 luafile ~/.config/nvim/init_lua.lua
 
 let g:bqn_prefix_key = 'à'
+
+set thesaurus+=~/.local/share/nvim/plugged/vim-french-thesaurus/francais_vim.txt
+
+set foldmethod=marker
