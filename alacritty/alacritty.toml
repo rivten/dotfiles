@@ -30,7 +30,9 @@ foreground = "#fce8c3"
 size = 11.0
 
 [font.normal]
-family = "Fira Mono"
+# to use the BQN font, in the terminal, type
+# `alacritty msg config 'font.normal.family="BQN386 Unicode"'`
+family = "Hack"
 
 [[keyboard.bindings]]
 action = "ScrollPageUp"
