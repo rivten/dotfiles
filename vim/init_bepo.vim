@@ -43,7 +43,7 @@ set nocompatible
 
 call plug#begin()
 Plug 'tikhomirov/vim-glsl'
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
 Plug 'bkad/CamelCaseMotion'
 Plug 'junegunn/goyo.vim'
 Plug 'skywind3000/asyncrun.vim'
@@ -61,7 +61,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'leafgarland/typescript-vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'rust-lang/rust.vim'
-Plug 'kassio/neoterm'
+"Plug 'kassio/neoterm'
 Plug 'jsborjesson/vim-uppercase-sql'
 Plug 'tpope/vim-fugitive'
 Plug 'lambdalisue/suda.vim'
@@ -75,7 +75,7 @@ Plug 'fatih/vim-go'
 Plug 'embear/vim-localvimrc'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'iosmanthus/vim-nasm'
-Plug 'evanleck/vim-svelte'
+"Plug 'evanleck/vim-svelte'
 Plug 'mbbill/undotree'
 Plug 'NoahTheDuke/vim-just'
 Plug 'rluba/jai.vim'
@@ -83,14 +83,12 @@ Plug 'preservim/vim-colors-pencil'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'Tetralux/odin.vim'
 Plug 'zah/nim.vim'
-Plug 'mickael-menu/zk-nvim'
+"Plug 'mickael-menu/zk-nvim'
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-fireplace'
 Plug 'bhurlow/vim-parinfer'
 Plug 'ocaml/vim-ocaml'
 Plug 'jpalardy/vim-slime'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'ElmCast/elm-vim'
 Plug 'bfrg/vim-jq'
 Plug 'wlangstroth/vim-racket'
@@ -101,6 +99,8 @@ Plug 'Nicoloren/vim-french-thesaurus'
 Plug 'vim-scripts/pgn.vim'
 Plug 'cdelledonne/vim-cmake'
 Plug 'glensc/vim-syntax-lighttpd'
+Plug 'bellinitte/uxntal.vim'
+Plug 'itchyny/lightline.vim'
 
 "Some cool black&white colorscheme, just in case
 "Plug 'pbrisbin/vim-colors-off'
@@ -116,6 +116,9 @@ filetype indent on
 syntax enable
 
 set title
+
+set noshowmode
+let g:lightline = {'colorscheme': 'srcery'}
 
 "set background=dark
 "colorscheme gruvbox
@@ -248,9 +251,9 @@ if has('autocmd')
         " Godot - for gdscript, do not set tab as spaces
         autocmd FileType gdscript3 setlocal noexpandtab
 
-        autocmd BufWritePost *.vim source %
-        autocmd BufWritePost .lvimrc source %
-        autocmd BufWritePost .lvimrc.lua luafile %
+        "autocmd BufWritePost *.vim source %
+        "autocmd BufWritePost .lvimrc source %
+        "autocmd BufWritePost .lvimrc.lua luafile %
 
         autocmd BufReadPost *.pgn set syntax=pgn
 	augroup END
@@ -532,7 +535,7 @@ let g:gutentags_project_root = ['.gutctags']
 let g:localvimrc_ask = 0
 let g:localvimrc_sandbox = 0
 
-lua require("toggleterm").setup{direction = 'float'}
+"lua require("toggleterm").setup{direction = 'float'}
 
 "nnoremap þß :ToggleTerm<CR>
 "tnoremap þß <C-\><C-n>:ToggleTerm<CR>
@@ -637,13 +640,14 @@ let g:UltiSnipsJumpBackwardTrigger="<c-s>"
 
 hi! link Title SrceryBrightBlueBold
 
-let g:localvimrc_name = [".lvimrc", ".lvimrc.lua"]
+"let g:localvimrc_name = [".lvimrc", ".lvimrc.lua"]
+let g:localvimrc_name = [".lvimrc"]
 
-lua require("zk").setup({picker="fzf", lsp=nil})
+"lua require("zk").setup({picker="fzf", lsp=nil})
 
 let g:slime_target = "x11"
 
-luafile ~/.config/nvim/init_lua.lua
+"luafile ~/.config/nvim/init_lua.lua
 
 let g:bqn_prefix_key = 'à'
 
