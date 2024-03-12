@@ -26,6 +26,7 @@ ln -sf $cwd/tmux/tmux.conf ~/.tmux.conf
 ln -sf $cwd/vim/init_bepo.vim ~/.config/nvim/init.vim
 ln -sf $cwd/vim/init_lua.lua ~/.config/nvim/init_lua.lua
 ln -sf $cwd/vim/ginit.vim ~/.config/nvim/ginit.vim
+ln -sf $cwd/vim/init_bepo.vim ~/.vimrc
 ln -sf $cwd/zsh/zshrc ~/.zshrc
 ln -sf $cwd/zsh/p10k.zsh ~/.p10k.zsh
 ln -sf $cwd/zsh/zsh_plugins.txt ~/.zsh_plugins.txt

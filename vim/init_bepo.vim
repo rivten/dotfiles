@@ -118,7 +118,8 @@ syntax enable
 set title
 
 set noshowmode
-let g:lightline = {'colorscheme': 'srcery'}
+let g:lightline = {'colorscheme': 'srcery_drk'}
+set laststatus=2
 
 "set background=dark
 "colorscheme gruvbox
@@ -164,6 +165,11 @@ if has("gui_running")
 	"fullscreen at startup
 	"au GUIEnter * simalt ~n 
 	set lines=999 columns=999
+endif
+
+if !has("nvim")
+    let &t_SI = "\e[6 q"
+    let &t_EI = "\e[2 q"
 endif
 
 " displaying line numbers
@@ -356,7 +362,11 @@ map <silent> <leader>z <Plug>CamelCaseMotion_w
 "         BUILD BATCH                       "
 """""""""""""""""""""""""""""""""""""""""""""
 let g:asyncrun_open = 8
-nnoremap <leader>b :make<enter>
+if has("nvim")
+    nnoremap <leader>b :make<enter>
+else
+    nnoremap <leader>b :AsyncRun -program=make<enter>
+endif
 
 " Convert slashes to backslashes for Windows.
 if has('win32')
@@ -539,6 +549,13 @@ let g:localvimrc_sandbox = 0
 
 "nnoremap þß :ToggleTerm<CR>
 "tnoremap þß <C-\><C-n>:ToggleTerm<CR>
+
+if !has("nvim")
+    execute "set <M-t>=\et"
+    execute "set <M-r>=\er"
+    execute "set <M-s>=\es"
+    execute "set <M-c>=\ec"
+endif
 
 nnoremap <M-t> <C-w>j
 nnoremap <M-r> <C-w>l
