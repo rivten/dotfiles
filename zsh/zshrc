@@ -81,7 +81,7 @@ source /usr/share/fzf/completion.zsh
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
 export PAGER="bat --style=plain"
-export MANPAGER="sh -c 'col -b | bat -l man -p'"
+export MANPAGER="bat -l man -p"
 
 t () {
     [[ -d ~/dev/t ]] || git clone https://github.com/sjl/t ~/dev/t
