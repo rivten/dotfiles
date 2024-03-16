@@ -671,3 +671,10 @@ let g:bqn_prefix_key = 'à'
 set thesaurus+=~/.local/share/nvim/plugged/vim-french-thesaurus/francais_vim.txt
 
 set foldmethod=marker
+
+command! Scratch new | setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile number
+
+au FileType netrw nmap <buffer> t <down>
+au FileType netrw nmap <buffer> s <up>
+au FileType netrw nmap <buffer> c -
+au FileType netrw nmap <buffer> r <CR>
