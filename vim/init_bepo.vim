@@ -537,7 +537,7 @@ let g:rustfmt_autosave = 1
 let g:cargo_makeprg_params = 'build'
 
 let g:nnn#set_default_mappings = 0
-nnoremap <leader><Space> :NnnPicker<CR>
+"nnoremap <leader><Space> :NnnPicker<CR>
 nnoremap <leader>f :NnnExplorer<CR>
 
 let g:gutentags_project_root = ['.gutctags']
@@ -678,3 +678,5 @@ au FileType netrw nmap <buffer> t <down>
 au FileType netrw nmap <buffer> s <up>
 au FileType netrw nmap <buffer> c -
 au FileType netrw nmap <buffer> r <CR>
+
+nnoremap <leader><Space> :AsyncRun 

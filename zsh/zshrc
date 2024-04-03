@@ -78,10 +78,9 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
-export VISUAL="nvim"
+export VISUAL="vim"
 export EDITOR="$VISUAL"
 export PAGER="bat --style=plain"
-export MANPAGER="bat -l man -p"
 
 t () {
     [[ -d ~/dev/t ]] || git clone https://github.com/sjl/t ~/dev/t
@@ -89,7 +88,7 @@ t () {
 }
 
 alias l='exa -lhai'
-alias v='nvim'
+alias v='vim'
 alias q='exit'
 
 export FZF_DEFAULT_OPTS="--bind ctrl-t:down,ctrl-s:up"
