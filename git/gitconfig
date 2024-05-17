@@ -3,18 +3,18 @@
     name = rivten
     email = rivten@riseup.net
 [core]
-    editor = nvim
+    editor = vim
     excludesFile = ~/.gitignore
 	pager = bat -p
 	quotePath = false
 	commitGraph = true
 [mergetool]
     prompt = false
-[mergetool "nvim"]
-    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+[mergetool "vim"]
+    cmd = vim -f -c \"Gdiffsplit!\" \"$MERGED\"
 [merge]
     conflictstyle = diff3
-    tool = nvim
+    tool = vim
 [push]
     default = tracking
 [pull]
