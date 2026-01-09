@@ -42,64 +42,64 @@ filetype off
 set nocompatible
 
 call plug#begin()
-Plug 'tikhomirov/vim-glsl'
+"Plug 'tikhomirov/vim-glsl'
 "Plug 'morhetz/gruvbox'
 Plug 'bkad/CamelCaseMotion'
-Plug 'junegunn/goyo.vim'
+"Plug 'junegunn/goyo.vim'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'ziglang/zig.vim'
+"Plug 'ziglang/zig.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'habamax/vim-godot'
+"Plug 'habamax/vim-godot'
 Plug 'srcery-colors/srcery-vim'
-Plug 'elixir-editors/vim-elixir'
+"Plug 'elixir-editors/vim-elixir'
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
-Plug 'dpelle/vim-Grammalecte'
+"Plug 'dpelle/vim-Grammalecte'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'leafgarland/typescript-vim'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'rust-lang/rust.vim'
+"Plug 'neovimhaskell/haskell-vim'
+"Plug 'rust-lang/rust.vim'
 "Plug 'kassio/neoterm'
 Plug 'jsborjesson/vim-uppercase-sql'
 Plug 'tpope/vim-fugitive'
-Plug 'lambdalisue/suda.vim'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'reedes/vim-pencil'
-Plug 'StanAngeloff/php.vim'
-Plug 'udalov/kotlin-vim'
-Plug 'mcchrish/nnn.vim'
-Plug 'pgdouyon/vim-yin-yang'
-Plug 'fatih/vim-go'
+"Plug 'lambdalisue/suda.vim'
+"Plug 'mustache/vim-mustache-handlebars'
+"Plug 'reedes/vim-pencil'
+"Plug 'StanAngeloff/php.vim'
+"Plug 'udalov/kotlin-vim'
+"Plug 'mcchrish/nnn.vim'
+"Plug 'pgdouyon/vim-yin-yang'
+"Plug 'fatih/vim-go'
 Plug 'embear/vim-localvimrc'
-Plug 'akinsho/toggleterm.nvim'
-Plug 'iosmanthus/vim-nasm'
+"Plug 'akinsho/toggleterm.nvim'
+"Plug 'iosmanthus/vim-nasm'
 "Plug 'evanleck/vim-svelte'
-Plug 'mbbill/undotree'
-Plug 'NoahTheDuke/vim-just'
-Plug 'rluba/jai.vim'
-Plug 'preservim/vim-colors-pencil'
+"Plug 'mbbill/undotree'
+"Plug 'NoahTheDuke/vim-just'
+"Plug 'rluba/jai.vim'
+"Plug 'preservim/vim-colors-pencil'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'Tetralux/odin.vim'
-Plug 'zah/nim.vim'
+"Plug 'zah/nim.vim'
 "Plug 'mickael-menu/zk-nvim'
-Plug 'tpope/vim-dadbod'
-Plug 'tpope/vim-fireplace'
-Plug 'bhurlow/vim-parinfer'
-Plug 'ocaml/vim-ocaml'
-Plug 'jpalardy/vim-slime'
-Plug 'ElmCast/elm-vim'
+"Plug 'tpope/vim-dadbod'
+"Plug 'tpope/vim-fireplace'
+"Plug 'bhurlow/vim-parinfer'
+"Plug 'ocaml/vim-ocaml'
+"Plug 'jpalardy/vim-slime'
+"Plug 'ElmCast/elm-vim'
 Plug 'bfrg/vim-jq'
-Plug 'wlangstroth/vim-racket'
-Plug 'mlochbaum/BQN', {'rtp': 'editors/vim'}
+"Plug 'wlangstroth/vim-racket'
+"Plug 'mlochbaum/BQN', {'rtp': 'editors/vim'}
 Plug 'gagbo/vim-gnuplot'
 Plug 'ledger/vim-ledger'
-Plug 'Nicoloren/vim-french-thesaurus'
+"Plug 'Nicoloren/vim-french-thesaurus'
 Plug 'vim-scripts/pgn.vim'
-Plug 'cdelledonne/vim-cmake'
-Plug 'glensc/vim-syntax-lighttpd'
-Plug 'bellinitte/uxntal.vim'
+"Plug 'cdelledonne/vim-cmake'
+"Plug 'glensc/vim-syntax-lighttpd'
+"Plug 'bellinitte/uxntal.vim'
 Plug 'itchyny/lightline.vim'
 
 "Some cool black&white colorscheme, just in case
@@ -248,6 +248,7 @@ set foldnestmax=10
 set foldmethod=indent
 
 " no more beeps
+set belloff=all
 set noerrorbells visualbell t_vb=
 if has('autocmd')
 	augroup personal_group
@@ -487,6 +488,10 @@ if get(g:, 'colors_name', '') == 'srcery'
 
     hi! link tomlTable SrceryBrightBlue
     hi! link tomlTableArray SrceryBrightBlue
+    hi! link scalaNameDefinition SrceryBrightWhite
+    hi! link scalaCapitalWord SrceryBrightBlue
+    hi! link scalaCaseFollowing SrceryBrightBlue
+    hi! link scalaInstanceDeclaration SrceryBrightBlue
 endif
 
 function! ResetColorscheme()
@@ -550,11 +555,17 @@ let g:localvimrc_sandbox = 0
 "nnoremap þß :ToggleTerm<CR>
 "tnoremap þß <C-\><C-n>:ToggleTerm<CR>
 
-if !has("nvim")
-    execute "set <M-t>=\et"
-    execute "set <M-r>=\er"
-    execute "set <M-s>=\es"
-    execute "set <M-c>=\ec"
+if !has("win32")
+    if !has("nvim")
+        execute "set <M-t>=\et"
+        execute "set <M-r>=\er"
+        execute "set <M-s>=\es"
+        execute "set <M-c>=\ec"
+    endif
+
+else
+    let &t_SI = "\e[6 q"
+    let &t_EI = "\e[2 q"
 endif
 
 nnoremap <M-t> <C-w>j
@@ -680,3 +691,15 @@ au FileType netrw nmap <buffer> c -
 au FileType netrw nmap <buffer> r <CR>
 
 nnoremap <leader><Space> :AsyncRun 
+
+set ssop-=options
+set ssop-=folds
+
+if has("win32")
+    inoremap ’ '
+    augroup reset_cursor_shape
+      au!
+      autocmd VimEnter * normal! :startinsert :stopinsert
+      autocmd VimEnter * redraw!
+    augroup END
+endif

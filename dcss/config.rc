@@ -1,8 +1,13 @@
-# always_show_zot = true
+always_show_zot = true
+
+tile_viewport_scale = 1.1
+
+explore_auto_rest = true
+explore_delay = 5
 
 default_manual_training = true
 default_show_all_skills = true
-autofight_stop = 50
+autofight_stop = 80
 auto_butcher = true
 auto_eat_chunks = true
 show_more = false
@@ -29,6 +34,8 @@ hp_warning = 50
 
 auto_hide_spells = true
 wall_jump_move = false
+
+language = fr
 
 # BÉPO keybindings
 
