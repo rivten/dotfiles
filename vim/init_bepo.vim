@@ -53,16 +53,16 @@ Plug 'junegunn/fzf.vim'
 "Plug 'habamax/vim-godot'
 Plug 'srcery-colors/srcery-vim'
 "Plug 'elixir-editors/vim-elixir'
-Plug 'pangloss/vim-javascript'
-Plug 'MaxMEllon/vim-jsx-pretty'
+"Plug 'pangloss/vim-javascript'
+"Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
 "Plug 'dpelle/vim-Grammalecte'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'leafgarland/typescript-vim'
+"Plug 'ludovicchabant/vim-gutentags'
+"Plug 'leafgarland/typescript-vim'
 "Plug 'neovimhaskell/haskell-vim'
 "Plug 'rust-lang/rust.vim'
 "Plug 'kassio/neoterm'
-Plug 'jsborjesson/vim-uppercase-sql'
+"Plug 'jsborjesson/vim-uppercase-sql'
 Plug 'tpope/vim-fugitive'
 "Plug 'lambdalisue/suda.vim'
 "Plug 'mustache/vim-mustache-handlebars'
@@ -90,18 +90,20 @@ Plug 'Tetralux/odin.vim'
 "Plug 'ocaml/vim-ocaml'
 "Plug 'jpalardy/vim-slime'
 "Plug 'ElmCast/elm-vim'
-Plug 'bfrg/vim-jq'
+"Plug 'bfrg/vim-jq'
 "Plug 'wlangstroth/vim-racket'
 "Plug 'mlochbaum/BQN', {'rtp': 'editors/vim'}
-Plug 'gagbo/vim-gnuplot'
-Plug 'ledger/vim-ledger'
+"Plug 'gagbo/vim-gnuplot'
+"Plug 'ledger/vim-ledger'
 "Plug 'Nicoloren/vim-french-thesaurus'
-Plug 'vim-scripts/pgn.vim'
+"Plug 'vim-scripts/pgn.vim'
 "Plug 'cdelledonne/vim-cmake'
 "Plug 'glensc/vim-syntax-lighttpd'
 "Plug 'bellinitte/uxntal.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-obsession'
 
+let g:obsession_no_bufenter=0
 "Some cool black&white colorscheme, just in case
 "Plug 'pbrisbin/vim-colors-off'
 "Plug 'huyvohcmc/atlas.vim'
@@ -271,77 +273,6 @@ if has('autocmd')
 	"augroup END
 endif
 
-function! RunFormatter(executable, cmdline) abort
-  " Save cursor position and many other things.
-  let view = winsaveview()
-
-  if !executable(a:executable)
-    echohl Error | echomsg "no ". a:executable . " binary found in PATH" | echohl None
-    return
-  endif
-
-  let cmdline = a:cmdline
-  let current_buf = bufnr('')
-
-  " The formatted code is output on stdout, the errors go on stderr.
-  if exists('*systemlist')
-    silent let out = systemlist(cmdline, current_buf)
-  else
-    silent let out = split(system(cmdline, current_buf))
-  endif
-  let err = v:shell_error
-
-
-  if err == 0
-    " remove undo point caused via BufWritePre.
-    try | silent undojoin | catch | endtry
-
-    " Replace the file content with the formatted version.
-    if exists('*deletebufline')
-      call deletebufline(current_buf, len(out), line('$'))
-    else
-      silent execute ':' . len(out) . ',' . line('$') . ' delete _'
-    endif
-    call setline(1, out)
-
-    " No errors detected, close the loclist.
-    call setloclist(0, [], 'r')
-    lclose
-  elseif get(g:, 'autopep8_parse_errors', 1)
-    let errors = s:parse_errors(expand('%'), out)
-
-    call setloclist(0, [], 'r', {
-        \ 'title': 'Errors',
-        \ 'items': errors,
-        \ })
-
-    let max_win_height = get(g:, 'zig_fmt_max_window_height', 5)
-    " Prevent the loclist from becoming too long.
-    let win_height = min([max_win_height, len(errors)])
-    " Open the loclist, but only if there's at least one error to show.
-    execute 'silent! lwindow ' . win_height
-  endif
-
-  call winrestview(view)
-
-  if err != 0
-    echohl Error | echomsg "autopep8 returned error" | echohl None
-    return
-  endif
-
-  " Run the syntax highlighter on the updated content and recompute the folds if
-  " needed.
-  syntax sync fromstart
-endfunction
-
-function! PythonFormat() abort
-    call RunFormatter('black', 'black -q -')
-endfunction
-
-function! ClangFormat() abort
-    call RunFormatter('clang-format', 'clang-format --style=WebKit -')
-endfunction
-
 " no backup
 set nobackup
 set nowb
@@ -438,9 +369,6 @@ if !has("nvim")
     set termguicolors
 endif
 
-let g:grammalecte_cli_py="/usr/bin/grammalecte-cli"
-let g:grammalecte_disable_rules = 'apostrophe_typographique apostrophe_typographique_après_t espaces_début_ligne espaces_milieu_ligne espaces_fin_de_ligne typo_points_suspension1 typo_tiret_incise nbsp_avant_double_ponctuation nbsp_avant_deux_points nbsp_après_chevrons_ouvrants nbsp_avant_chevrons_fermants1 unit_nbsp_avant_unités1 unit_nbsp_avant_unités2 unit_nbsp_avant_unités3 typo_guillemets_typographiques_doubles_fermants typo_guillemets_typographiques_doubles_ouvrants typo_tiret_incise2 esp_fin_ligne typo_tiret_début_ligne typo_guillemets_perdus'
-
 " Srcery Haskell override
 if get(g:, 'colors_name', '') == 'srcery'
     hi! link haskellType SrceryBrightBlue
@@ -493,57 +421,6 @@ if get(g:, 'colors_name', '') == 'srcery'
     hi! link scalaCaseFollowing SrceryBrightBlue
     hi! link scalaInstanceDeclaration SrceryBrightBlue
 endif
-
-function! ResetColorscheme()
-    set bg=dark
-    colorscheme srcery
-    hi! link Title SrceryBrightBlueBold
-    syntax enable
-endfunction
-
-" prose setup
-" adapted from https://www.reddit.com/r/vim/comments/q03mqa/my_setup_for_prose/
-let w:ProseModeOn = 0
-
-function! EnableProseMode()
-    "setlocal spell spelllang=fr
-    "colorscheme pencil
-    Goyo 70
-    SoftPencil
-endfu
-
-function! DisableProseMode()
-    Goyo!
-    if &filetype ==# 'markdown'
-        NoPencil
-    endif
-    "setlocal nospell
-endfu
-
-function! ToggleProseMode()
-    if w:ProseModeOn == 0
-        call EnableProseMode()
-        let w:ProseModeOn = 1
-    else
-        call DisableProseMode()
-    endif
-endfu
-
-augroup writing
-    autocmd!
-    autocmd! User GoyoLeave nested call ResetColorscheme()
-augroup END
-
-command! Prose call EnableProseMode()
-command! UnProse call DisableProseMode()
-command! ToggleProse call ToggleProseMode()
-
-let g:rustfmt_autosave = 1
-let g:cargo_makeprg_params = 'build'
-
-let g:nnn#set_default_mappings = 0
-"nnoremap <leader><Space> :NnnPicker<CR>
-nnoremap <leader>f :NnnExplorer<CR>
 
 let g:gutentags_project_root = ['.gutctags']
 
@@ -668,14 +545,9 @@ let g:UltiSnipsJumpBackwardTrigger="<c-s>"
 
 hi! link Title SrceryBrightBlueBold
 
-"let g:localvimrc_name = [".lvimrc", ".lvimrc.lua"]
 let g:localvimrc_name = [".lvimrc"]
 
-"lua require("zk").setup({picker="fzf", lsp=nil})
-
 let g:slime_target = "x11"
-
-"luafile ~/.config/nvim/init_lua.lua
 
 let g:bqn_prefix_key = 'à'
 
@@ -703,3 +575,6 @@ if has("win32")
       autocmd VimEnter * redraw!
     augroup END
 endif
+let g:zig_fmt_autosave = 0
+
+nnoremap <F6> :AsyncStop<CR>
